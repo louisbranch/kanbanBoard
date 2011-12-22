@@ -1,0 +1,4 @@
+%h2= @project.name
+=link_to 'New User Story', new_project_user_story_path(@project), :remote => true, :class => 'button', :id => 'new_story'
+%div#board
+  =render @statuses

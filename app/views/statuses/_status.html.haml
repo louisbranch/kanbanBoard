@@ -1,0 +1,4 @@
+%section{ :id => status.alias }
+  %h3= status.name
+  %ul{ 'data-update-url' => update_status_project_user_stories_path(@project, :status => status.id)}
+    =render :partial => 'user_stories/user_story', :collection => @project.user_stories.by_status(status.id)

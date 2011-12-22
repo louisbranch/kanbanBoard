@@ -1,0 +1,22 @@
+$section_height: 600px
+div#board
+  position: relative
+  overflow: hidden
+  border-top: 2px solid #ccc
+  border-bottom: 2px solid #ccc
+  margin: 0 -10px 
+  section
+    margin: 0
+    overflow: hidden
+    width: (100%/5)
+    float: left
+    border-right: 1px dashed #ccc
+    box-sizing: border-box
+    background-color: #fff
+    padding: 10px
+    &#archived
+      border-right: none
+    &.active
+      background-color: #FCF7D9
+    ul
+      min-height: $section_height
