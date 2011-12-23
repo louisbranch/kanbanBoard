@@ -12,3 +12,8 @@ $ dragUserStories = ->
         $(this).parent().removeClass('active')
       update: ->
         $.post($(this).data('update-url'), $(this).sortable('serialize'))
+          
+$ adjustBoardHeight = ->
+  if $('div#board').length
+    height = $(window).height() - 160
+    $('div#board section ul').css('min-height', height)

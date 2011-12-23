@@ -1,0 +1,7 @@
+%tr{:id => ['project', project.id]}
+  %td.project_name= link_to project.name, project_path(project)
+  %td.project_description= project.description
+  - @statuses.each do |status|
+    %td{ :class => status.alias }= project.user_stories.by_status(status).count
+  %td= link_to 'Edit', edit_project_path(project)
+  %td= link_to 'Delete', project_path(project), :method => :delete, :confirm => 'Are you sure?'

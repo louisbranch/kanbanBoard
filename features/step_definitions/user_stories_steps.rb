@@ -22,7 +22,7 @@ end
 
 When /^I update this user story story points$/ do
   visit edit_project_user_story_path(Project.first, @user_story)
-  select(StoryPoint.first.value, :from => 'Story Points')
+  select('13', :from => 'Story Points')
   click_on 'Update User story'
 end
 
@@ -30,6 +30,13 @@ When /^I update this user story status$/ do
   visit edit_project_user_story_path(Project.first, @user_story)
   select('Doing', :from => 'Status')
   click_on 'Update User story'
+end
+
+When /^I delete this user story$/ do
+  visit project_path(Project.first)
+  within("li#user_story_1") do
+    click_on 'Delete'
+  end
 end
 
 Then /^I should see this user story listed on the project backlog$/ do
@@ -44,7 +51,6 @@ Then /^I should see this user story listed on the project backlog$/ do
 end
 
 Then /^I should see this user story updated$/ do
-  current_path.should == project_path(Project.first)
   page.should have_content 'User Story Updated!'
   within("li#user_story_1") do
     page.should have_content 'Updating an User Story'
@@ -52,10 +58,9 @@ Then /^I should see this user story updated$/ do
   end
 end
   
-Then /^this user story should diplay its story points$/ do
-  current_path.should == project_path(Project.first)
+Then /^I should see this user story story points$/ do
   within("li#user_story_1") do
-    page.should have_content StoryPoint.first.value
+    page.should have_content '13'
   end
 end
 

@@ -5,7 +5,7 @@ Feature: Update User Stories Statuses
 
 	Background:
 		Given an user story exists
-		Given a status system exists
+		And a status system exists
 
 	Scenario:
 		When I update this user story status

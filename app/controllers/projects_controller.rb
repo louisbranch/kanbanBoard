@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
 	
 	def index
 	  @projects = Project.all
+	  @statuses = Status.all
 	end
 	
 	def show
@@ -20,6 +21,30 @@ class ProjectsController < ApplicationController
 	  else
 	    show_errors(@project)
 	    render :new
+	  end
+	end
+	
+	def edit
+	  @project = Project.find(params[:id])
+	end
+	
+	def update
+	  @project = Project.find(params[:id])
+	  if @project.update_attributes(params[:project])
+	    redirect_to projects_path, :notice => 'Project Updated!'
+	  else
+	    show_errors(@project)
+	    render :edit
+	  end
+	end
+	
+	def destroy
+	  @project = Project.find(params[:id])
+	  if @project.destroy
+	    redirect_to projects_path, :notice => 'Project Deleted!'
+	  else
+	    show_errors(@project)
+	    render :index
 	  end
 	end
 

@@ -4,6 +4,7 @@ class UserStoriesController < ApplicationController
   def new
     @user_story = @project.user_stories.build
     @statuses = Status.all
+    @story_points = StoryPoint.all
   end
   
   def create
@@ -22,6 +23,7 @@ class UserStoriesController < ApplicationController
   def edit
     @user_story = UserStory.find(params[:id])
     @statuses = Status.all
+    @story_points = StoryPoint.all
   end
   
   def update
@@ -34,6 +36,16 @@ class UserStoriesController < ApplicationController
     else
       show_errors(@user_story)
       render :edit
+    end
+  end
+  
+  def destroy
+    @user_story = UserStory.find(params[:id])
+    if @user_story.destroy
+      redirect_to @project, :notice => 'User Story Deleted!'
+    else
+      show_errors(@user_story)
+      redirect_to @project
     end
   end
   	

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111222030959) do
+ActiveRecord::Schema.define(:version => 20111223155345) do
 
   create_table "projects", :force => true do |t|
     t.string   "name"
@@ -26,17 +26,25 @@ ActiveRecord::Schema.define(:version => 20111222030959) do
     t.datetime "updated_at"
   end
 
+  create_table "story_points", :force => true do |t|
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "user_stories", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.integer  "position"
     t.integer  "project_id"
-    t.integer  "status_id",   :default => 1
+    t.integer  "status_id",      :default => 1
+    t.integer  "story_point_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "user_stories", ["project_id"], :name => "index_user_stories_on_project_id"
   add_index "user_stories", ["status_id"], :name => "index_user_stories_on_status_id"
+  add_index "user_stories", ["story_point_id"], :name => "index_user_stories_on_story_point_id"
 
 end

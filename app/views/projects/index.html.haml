@@ -1,5 +1,13 @@
 %h2 Projects
-=link_to 'New Project', new_project_path, :class => 'button', :id => 'new_project'
-%ul#projects_list
-  - @projects.each do |project|
-    %li= link_to project.name, project_path(project)
+%table#projects_list
+  %thead
+    %td.project_name Project
+    %td.project_description Description
+    - @statuses.each do |status|
+      %td{ :class => status.alias }= status.name
+    %td
+    %td
+  %tbody
+    = render @projects
+      
+=link_to 'New Project', new_project_path, :class => 'button'
