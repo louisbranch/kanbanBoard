@@ -4,8 +4,9 @@ Feature: Creating an User Story
 	I want to create an User Story
 	
 	Background:
-		Given a project exists
-		Given a status system exists
+		Given I log in
+		And a project exists
+		And a status system exists
 	
 	Scenario: Adding a story to a project
 		When I create a new user story

@@ -3,6 +3,9 @@ Feature: Updating an User Story
 	As a Product Owner
 	I want to update an User Story
 
+	Background:
+		Given I log in
+
 	Scenario: Updating a story
 		Given an user story exists
 		When I update this user story

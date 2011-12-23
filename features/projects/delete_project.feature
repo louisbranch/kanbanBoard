@@ -4,13 +4,14 @@ Feature: Deleting a Project
 	I want to delete a project
 	
 	Background:
-		Given a project exists
+		Given I log in
+		And a project exists
 	
 	Scenario: Deleting a Project
 		When I delete this project
 		Then I should no longer see this project
 	
-	Scenario:
+	Scenario: Deleting a Project usert story
 		Given this project has an user story
 		When I delete this project
 		Then I should no longer see this user story

@@ -16,6 +16,7 @@ end
 
 When /^I create a new project$/ do
 	visit projects_path
+	current_path.should == projects_path
   click_on 'New Project'
   fill_in 'Name', :with => 'Agile Board'
   fill_in 'Description', :with => 'Simple agile board to track User Stories and Iterations'

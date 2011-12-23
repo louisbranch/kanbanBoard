@@ -4,7 +4,8 @@ Feature: Deleting an User Story
 	I want to delete an user story
 	
 	Background:
-		Given an user story exists
+		Given I log in
+		And an user story exists
 	
 	Scenario:
 		When I delete this user story

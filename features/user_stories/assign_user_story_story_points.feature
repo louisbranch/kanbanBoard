@@ -4,7 +4,8 @@ Feature: Assigning story points to User Stories
 	I want to assign story points to user stories
 
 	Background:
-		Given an user story exists
+		Given I log in
+		And an user story exists
 		And a story point system exists
 
 	Scenario:

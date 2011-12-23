@@ -4,6 +4,7 @@ Feature: Updating a Project
 	I want to edit a project information
 	
 	Background:
+		Given I log in
 		Given a project exists
 	
 	Scenario:

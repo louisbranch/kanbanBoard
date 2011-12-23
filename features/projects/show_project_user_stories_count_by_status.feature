@@ -4,6 +4,7 @@ Feature: Show a Project's user stories count for each status
 	I want to view a project's user stories count for each status
 	
 	Background:
+		Given I log in
 		Given a project has user stories with status
 	
 	Scenario:

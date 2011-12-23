@@ -1,5 +1,6 @@
 class UserStoriesController < ApplicationController
   before_filter :load_resources
+  before_filter :authorize
   
   def new
     @user_story = @project.user_stories.build

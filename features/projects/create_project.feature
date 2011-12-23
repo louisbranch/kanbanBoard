@@ -3,6 +3,9 @@ Feature: Creating a Project
 	As a Product Owner
 	I want to create a project
 	
+	Background:
+		Given I log in
+	
 	Scenario: Creating a new project
 		When I create a new project
 		Then I should see this project listed

@@ -5,6 +5,10 @@ KanbanBoard::Application.routes.draw do
       post 'update_status', :on => :collection
     end
   end
-  root :to => 'projects#index'
   
+  resources :sessions, :only => [:create]
+  match "login" => "sessions#new"
+  match "logout" => "sessions#destroy"
+  
+  root :to => 'projects#index'
 end
