@@ -73,3 +73,7 @@ Then /^I should see this user story listed on the correct status section$/ do
     end
   end
 end
+
+Then /^I should no longer see this user story$/ do
+  UserStory.all.count.should == 0
+end

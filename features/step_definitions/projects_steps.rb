@@ -10,6 +10,10 @@ Given /^a project has user stories with status$/ do
   end
 end
 
+Given /^this project has an user story$/ do
+  Factory(:user_story, :project => @project)
+end
+
 When /^I create a new project$/ do
 	visit projects_path
   click_on 'New Project'
@@ -35,10 +39,6 @@ When /^I delete this project$/ do
   end
 end
 
-Given /^this project has an user story$/ do
-  Factory(:user_story, :project => @project)
-end
-
 Then /^I should see this project listed$/ do
   Project.count.should == 1
   page.should have_content 'Project Created!'
@@ -59,10 +59,6 @@ end
 Then /^I should no longer see this project$/ do
   Project.all.count.should == 0
   page.should have_content 'Project Deleted!'
-end
-
-Then /^I should no longer see this user story$/ do
-  UserStory.all.count.should == 0
 end
 
 Then /^I should see this project's user stories count by status$/ do
