@@ -25,7 +25,7 @@ end
 
 When /^I update this project information$/ do
   visit projects_path
-  within("tr#project_1") do
+  within("tr#project_#{@project.id}") do
     click_on 'Edit'
   end
   fill_in 'Name', :with => 'kanbanBoard'
@@ -35,7 +35,7 @@ end
 
 When /^I delete this project$/ do
   visit projects_path
-  within("tr#project_1") do
+  within("tr#project_#{@project.id}") do
     click_on 'Delete'
   end
 end
@@ -43,7 +43,7 @@ end
 Then /^I should see this project listed$/ do
   Project.count.should == 1
   page.should have_content 'Project Created!'
-  within("tr#project_1") do
+  within("tr#project_#{Project.first.id}") do
     page.should have_content 'Agile Board'
     page.should have_content 'Simple agile board to track User Stories and Iterations'
   end
@@ -51,7 +51,7 @@ end
 
 Then /^I should see this project information updated$/ do
   page.should have_content 'Project Updated!'
-  within("tr#project_1") do
+  within("tr#project_#{@project.id}") do
     page.should have_content 'kanbanBoard'
     page.should have_content 'A even simpler way to track User Stories'
   end
@@ -64,7 +64,7 @@ end
 
 Then /^I should see this project's user stories count by status$/ do
   visit projects_path
-  within("tr#project_1") do
+  within("tr#project_#{@project.id}") do
     within("td.doing") do
       page.should have_content '2'
     end
