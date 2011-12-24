@@ -10,3 +10,9 @@ Feature: Deleting an User Story
 	Scenario:
 		When I delete this user story
 		Then I should no longer see this user story
+	
+	@javascript
+	Scenario:
+		When I delete this user story
+		And I accept the confirmation to delete
+		Then I should no longer see this user story

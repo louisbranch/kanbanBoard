@@ -4,5 +4,5 @@
     %span.story_points= user_story.points
   %div.details= highlight_user_story(user_story.description)
   %footer
-    = link_to 'Delete', project_user_story_path(@project, user_story), :method => :delete, :confirm => 'Are you sure?'
+    = link_to 'Delete', project_user_story_path(@project, user_story), :remote => true, :method => :delete, :confirm => 'Are you sure?'
     = link_to 'Edit', edit_project_user_story_path(@project, user_story), :remote => true

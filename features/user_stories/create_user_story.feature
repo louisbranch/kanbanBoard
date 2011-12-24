@@ -11,3 +11,8 @@ Feature: Creating an User Story
 	Scenario: Adding a story to a project
 		When I create a new user story
 		Then I should see this user story listed on the project backlog
+	
+	@javascript
+	Scenario: Adding a story to a project with AJAX
+		When I create a new user story
+		Then I should see this user story listed on the project backlog

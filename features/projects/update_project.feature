@@ -10,3 +10,8 @@ Feature: Updating a Project
 	Scenario:
 		When I update this project information
 		Then I should see this project information updated
+	
+	@javascript
+	Scenario:
+		When I update this project information
+		Then I should see this project information updated

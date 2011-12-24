@@ -46,9 +46,12 @@ When /^I delete this user story$/ do
   end
 end
 
+When /^I accept the confirmation to delete$/ do
+  page.driver.browser.switch_to.alert.accept
+end
+
 Then /^I should see this user story listed on the project backlog$/ do
   @project.user_stories.count.should == 1
-  page.should have_content 'User Story Created!'
   within("section#backlog") do
     within("li#user_story_#{UserStory.first.id}") do
       page.should have_content 'Creating an User Story'
@@ -58,7 +61,6 @@ Then /^I should see this user story listed on the project backlog$/ do
 end
 
 Then /^I should see this user story updated$/ do
-  page.should have_content 'User Story Updated!'
   within("li#user_story_#{@user_story.id}") do
     page.should have_content 'Updating an User Story'
     page.should have_content 'In order to change a user story information...'

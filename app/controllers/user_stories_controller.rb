@@ -43,7 +43,10 @@ class UserStoriesController < ApplicationController
   def destroy
     @user_story = UserStory.find(params[:id])
     if @user_story.destroy
-      redirect_to @project, :notice => 'User Story Deleted!'
+      respond_to do |format|
+        format.html { redirect_to @project, :notice => 'User Story Deleted!'}
+        format.js { @user_story }
+      end
     else
       show_errors(@user_story)
       redirect_to @project
