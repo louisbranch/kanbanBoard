@@ -32,6 +32,13 @@ When /^I update this user story status$/ do
   click_on 'Update User story'
 end
 
+When /^I drag and drop this user story to another status section$/ do
+  visit project_path(@user_story.project)
+  user_story = find("li#user_story_#{@user_story.id} header")
+  new_section = find("section#doing ul")
+  user_story.drag_to(new_section)
+end
+
 When /^I delete this user story$/ do
   visit project_path(Project.first)
   within("li#user_story_#{@user_story.id}") do
@@ -66,6 +73,7 @@ end
 
 Then /^I should see this user story listed on the correct status section$/ do
   visit project_path(Project.first)
+  @user_story.status.name.should == 'Backlog'
   within("section#doing") do
     within("li#user_story_#{@user_story.id}") do
       page.should have_content 'Creating an User Story'

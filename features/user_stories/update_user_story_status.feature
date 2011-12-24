@@ -8,6 +8,11 @@ Feature: Update User Stories Statuses
 		And an user story exists
 		And a status system exists
 
-	Scenario:
+	Scenario: Updating user story status through form
 		When I update this user story status
+		Then I should see this user story listed on the correct status section
+	
+	@javascript
+	Scenario: Updating user story status through drag and drop
+		When I drag and drop this user story to another status section
 		Then I should see this user story listed on the correct status section
