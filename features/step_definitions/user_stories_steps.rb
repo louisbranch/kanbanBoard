@@ -2,6 +2,14 @@ Given /^an user story exists$/ do
   @user_story = Factory(:user_story)
 end
 
+Given /^two user stories exist on the same project and status$/ do
+  @project = Factory(:project)
+  @status_1 = Factory(:status, :name => 'Backlog')
+  @status_2 = Factory(:status, :name => 'Doing')
+  @user_story_1 = Factory(:user_story, :project => @project, :status => @status_1, :name => 'User Story 1')
+  @user_story_2 = Factory(:user_story, :project => @project, :status => @status_1, :name => 'User Story 2')
+end
+
 When /^I create a new user story$/ do
   visit project_path(Project.first)
   click_on 'New User Story'
@@ -50,6 +58,15 @@ When /^I accept the confirmation to delete$/ do
   page.driver.browser.switch_to.alert.accept
 end
 
+When /^I drag and drop the second user story to the top of the first$/ do
+  visit project_path(@user_story_1.project)
+  user_story_1 = find("li#user_story_#{@user_story_1.id} header")
+  user_story_2 = find("li#user_story_#{@user_story_2.id} header")
+  new_section = find("section#doing ul")
+  user_story_2.drag_to(new_section)
+  user_story_1.drag_to(new_section)
+end
+
 Then /^I should see this user story listed on the project backlog$/ do
   @project.user_stories.count.should == 1
   within("section#backlog") do
@@ -86,4 +103,8 @@ end
 
 Then /^I should no longer see this user story$/ do
   UserStory.all.count.should == 0
+end
+
+Then /^I should see these user stories sorted as second and first$/ do
+  page.body.should =~ /#{'User Story 2'}.*#{'User Story 1'}/m
 end
