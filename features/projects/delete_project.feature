@@ -11,7 +11,7 @@ Feature: Deleting a Project
 		When I delete this project
 		Then I should no longer see this project
 	
-	Scenario: Deleting a Project usert story
+	Scenario: Deleting a Project user story
 		Given this project has an user story
 		When I delete this project
 		Then I should no longer see this user story

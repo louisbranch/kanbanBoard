@@ -11,7 +11,7 @@ Feature: Deleting an User Story
 		When I delete this user story
 		Then I should no longer see this user story
 	
-	@javascript
+	@javascript @wip
 	Scenario:
 		When I delete this user story
 		And I accept the confirmation to delete

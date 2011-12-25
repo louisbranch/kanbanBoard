@@ -48,13 +48,14 @@ When /^I drag and drop this user story to another status section$/ do
 end
 
 When /^I delete this user story$/ do
-  visit project_path(Project.first)
+  visit project_path(@user_story.project)
   within("li#user_story_#{@user_story.id}") do
     click_on 'Delete'
   end
 end
 
 When /^I accept the confirmation to delete$/ do
+  page.evaluate_script('window.confirm = function() { return true; }')
   page.driver.browser.switch_to.alert.accept
 end
 
@@ -102,9 +103,10 @@ Then /^I should see this user story listed on the correct status section$/ do
 end
 
 Then /^I should no longer see this user story$/ do
-  UserStory.all.count.should == 0
+  UserStory.exists?(@user_story).should == false
 end
 
 Then /^I should see these user stories sorted as second and first$/ do
+  visit project_path(@user_story_1.project)
   page.body.should =~ /#{'User Story 2'}.*#{'User Story 1'}/m
 end
