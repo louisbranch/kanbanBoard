@@ -4,4 +4,5 @@ $("<div id=form></div>").dialog
   position: ['center',50]
   open: ->
     $("div#form").html("<%= escape_javascript(render(:partial => 'user_stories/form')) %>")
+    $('form div#status').hide()
 						

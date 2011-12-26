@@ -4,8 +4,6 @@ class UserStoriesController < ApplicationController
   
   def new
     @user_story = @project.user_stories.build
-    @statuses = Status.all
-    @story_points = StoryPoint.all
   end
   
   def create
@@ -67,6 +65,8 @@ class UserStoriesController < ApplicationController
   
   def load_resources
     @project = Project.find(params[:project_id])    
+    @statuses = Status.all
+    @story_points = StoryPoint.all
   end
   
 end

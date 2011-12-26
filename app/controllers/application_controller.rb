@@ -6,12 +6,12 @@ class ApplicationController < ActionController::Base
   
   def show_errors(target)
     if target.errors.any?
-      flash[:error] ||= []
+      flash.now[:error] ||= []
       target.errors.full_messages.each do |msg|
-        flash[:error] << msg
+        flash.now[:error] << msg
       end
     else
-      flash[:error] = 'An error has occured!'
+      flash.now[:error] = 'An error has occured!'
     end
   end
   
@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   
   def authorize
     unless logged_in?
-      flash[:error] = "Not here, Cowboy!"
+      flash.now[:error] = "Not here, Cowboy!"
       redirect_to root_path
       false
     end
