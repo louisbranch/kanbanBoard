@@ -1,7 +1,7 @@
 =form_for @project do |f|
 	%div
 		=f.label :name, 'Name'
-		=f.text_field :name
+		=f.text_field :name, :autofocus => true
 	%div
 		=f.label :description, 'Description'
 		=f.text_area :description
