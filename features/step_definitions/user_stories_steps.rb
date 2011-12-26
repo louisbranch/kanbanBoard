@@ -10,6 +10,16 @@ Given /^two user stories exist on the same project and status$/ do
   @user_story_2 = Factory(:user_story, :project => @project, :status => @status_1, :name => 'User Story 2')
 end
 
+Given /^(\d+) user stories exist on the same project and status$/ do |num|
+  @project = Factory(:project)
+  @status = Factory(:status)
+  user_stories = FactoryGirl.create_list(:user_story, num.to_i, :project => @project, :status => @status)
+end
+
+Given /^I can only see the first 5 user stories$/ do
+  steps %{ Then I should see only the first 5 user stories on this status }
+end
+
 When /^I create a new user story$/ do
   visit project_path(Project.first)
   click_on 'New User Story'
@@ -82,6 +92,12 @@ When /^I drag and drop the second user story to the top of the first$/ do
   user_story_1.drag_to(new_section)
 end
 
+When /^I click to show the remaining user stories$/ do
+  within("section##{@status.alias}") do
+    find("li.show_more_user_stories").click
+  end
+end
+
 Then /^I should see this user story listed on the project backlog$/ do
   @project.user_stories.count.should == 1
   within("section#backlog") do
@@ -133,4 +149,14 @@ end
 Then /^I should see these user stories sorted as second and first$/ do
   visit project_path(@user_story_1.project)
   page.body.should =~ /#{'User Story 2'}.*#{'User Story 1'}/m
+end
+
+Then /^I should see only the first 5 user stories on this status$/ do
+  @project.user_stories.count.should == 6
+  visit project_path(@project)
+  find("li#user_story_#{@project.user_stories.last.id}").visible?.should == false
+end
+
+Then /^I should see all the 6 user stories on this status$/ do
+  find("li#user_story_#{@project.user_stories.last.id}").visible?.should == true
 end
