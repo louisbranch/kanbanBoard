@@ -8,6 +8,11 @@ Feature: Assigning story points to User Stories
 		And an user story exists
 		And a story point system exists
 
-	Scenario:
+	Scenario: Assigning story points to a user story
 		When I update this user story story points
 		Then I should see this user story story points
+	
+	Scenario: Displaying '?' when a user story doesn't have story points
+		Given this user story doesn't have story points
+		Then I should see this user story story points as '?'
+		

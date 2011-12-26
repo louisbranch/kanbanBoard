@@ -21,13 +21,13 @@ $ adjustBoardHeight = ->
 $ limitUserStoryPerStatus = ->
   if $('div#board').length
     for section in $('section ul')
-      if $(section).children('li.user_stories').length > 5
+      if $(section).children('li.user_stories').length > 4
         hideUserStories(section)
         $(section).children('li.show_more_user_stories').show()
 
 hideUserStories = (e) ->
   last_user_story = $(e).children('li.user_stories').length
-  $(e).children('li.user_stories').slice(5, last_user_story).hide()
+  $(e).children('li.user_stories').slice(4, last_user_story).hide()
 
 $ showMoreUserStories = ->
   if $('li.show_more_user_stories').length

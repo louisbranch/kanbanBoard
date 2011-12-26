@@ -2,6 +2,10 @@ Given /^an user story exists$/ do
   @user_story = Factory(:user_story)
 end
 
+Given /^this user story doesn't have story points$/ do
+  @user_story.story_point.should == nil
+end
+
 Given /^two user stories exist on the same project and status$/ do
   @project = Factory(:project)
   @status_1 = Factory(:status, :name => 'Backlog')
@@ -16,8 +20,9 @@ Given /^(\d+) user stories exist on the same project and status$/ do |num|
   user_stories = FactoryGirl.create_list(:user_story, num.to_i, :project => @project, :status => @status)
 end
 
-Given /^I can only see the first 5 user stories$/ do
-  steps %{ Then I should see only the first 5 user stories on this status }
+Given /^I can only see the first (\d+) user stories$/ do |num|
+  visit project_path(@project)
+  find("li#user_story_#{@project.user_stories.last.id}").visible?.should == false
 end
 
 When /^I create a new user story$/ do
@@ -151,12 +156,19 @@ Then /^I should see these user stories sorted as second and first$/ do
   page.body.should =~ /#{'User Story 2'}.*#{'User Story 1'}/m
 end
 
-Then /^I should see only the first 5 user stories on this status$/ do
-  @project.user_stories.count.should == 6
+Then /^I should see only the first (\d+) user stories on this status$/ do |num|
+  @project.user_stories.count.should == (num.to_i + 1)
   visit project_path(@project)
   find("li#user_story_#{@project.user_stories.last.id}").visible?.should == false
 end
 
-Then /^I should see all the 6 user stories on this status$/ do
+Then /^I should see all the (\d+) user stories on this status$/ do |num|
   find("li#user_story_#{@project.user_stories.last.id}").visible?.should == true
+end
+
+Then /^I should see this user story story points as '\?'$/ do
+  visit project_path(Project.first)
+  within("li#user_story_#{@user_story.id}") do
+    page.should have_content '?'
+  end
 end
