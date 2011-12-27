@@ -1,4 +1,4 @@
-%h2 New User
+%h2 Sign Up
 =form_for @user do |f|
   %div
     =f.label :email, 'Email'
@@ -9,4 +9,4 @@
   %div
     =f.label :password_confirmation, 'Password Confirmation'
     =f.password_field :password_confirmation
-  %div=f.submit :class => 'button'
+  %div=f.submit 'Sign Up', :class => 'button'
