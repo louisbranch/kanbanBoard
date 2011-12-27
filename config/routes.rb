@@ -1,5 +1,7 @@
 KanbanBoard::Application.routes.draw do
   
+  resource :home, :only => [:show], :controller => 'home'
+  
   resources :projects do
     resources :user_stories do
       post 'update_status', :on => :collection
@@ -12,5 +14,5 @@ KanbanBoard::Application.routes.draw do
   match "login" => "sessions#new"
   match "logout" => "sessions#destroy"
   
-  root :to => 'projects#index'
+  root :to => 'home#show'
 end
