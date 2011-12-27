@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 		@user = User.new(params[:user])
 		if @user.save
 		  auto_login(@user)
-		  redirect_to root_path, :notice => "Signed up!"
+		  redirect_to projects_path, :notice => "Signed up!"
 		else
 		  show_errors(@user)
 		  render :new

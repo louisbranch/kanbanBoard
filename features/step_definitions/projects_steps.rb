@@ -14,6 +14,15 @@ Given /^this project has an user story$/ do
   Factory(:user_story, :project => @project)
 end
 
+Given /^I'm not a member on this project$/ do
+  @project.members?(@user).should == false
+end
+
+Then /^I should be able to access this project$/ do
+  visit project_path(@project)
+  page.should have_content 'You don\'t have access to view this project!'
+end
+
 When /^I create a new project$/ do
   visit projects_path
   click_on 'New Project'
