@@ -16,6 +16,7 @@ gem 'haml-rails'
 gem 'coffeebeans'
 gem 'acts_as_list'
 gem 'sorcery'
+gem 'cancan'
 
 group :development, :test do
   gem 'sqlite3'

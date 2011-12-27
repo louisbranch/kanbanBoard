@@ -1,5 +1,7 @@
 class UserStoriesController < ApplicationController
   before_filter :require_login
+  load_and_authorize_resource :project
+  load_and_authorize_resource :user_story, :through => :project
   before_filter :load_resources
   
   def new

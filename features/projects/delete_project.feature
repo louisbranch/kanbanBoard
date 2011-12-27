@@ -5,7 +5,7 @@ Feature: Deleting a Project
 	
 	Background:
 		Given I'm logged in
-		And a project exists
+		And I have a project
 	
 	Scenario: Deleting a Project
 		When I delete this project

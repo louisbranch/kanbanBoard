@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
+  has_many :memberships, :dependent => :destroy
+  has_many :projects, :through => :memberships
+  
   attr_accessible :name, :email, :password, :password_confirmation
   
   validates :password,  :presence => true,

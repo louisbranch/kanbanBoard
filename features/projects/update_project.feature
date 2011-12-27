@@ -5,7 +5,7 @@ Feature: Updating a Project
 	
 	Background:
 		Given I'm logged in
-		Given a project exists
+		And I have a project
 	
 	Scenario: Updating a project
 		When I update this project information

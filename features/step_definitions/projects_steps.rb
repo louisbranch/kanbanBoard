@@ -1,9 +1,15 @@
+Given /^I have a project$/ do
+  @project = Factory(:project)
+  @user.projects << @project
+end
+
 Given /^a project exists$/ do
   @project = Factory(:project)
 end
 
 Given /^a project has user stories with status$/ do
   @project = Factory(:project)
+  @user.projects << @project
   @status = Factory(:status, :name => 'Doing')
   2.times do
     Factory(:user_story, :project => @project, :status => @status)
@@ -14,13 +20,8 @@ Given /^this project has an user story$/ do
   Factory(:user_story, :project => @project)
 end
 
-Given /^I'm not a member on this project$/ do
-  @project.members?(@user).should == false
-end
-
-Then /^I should be able to access this project$/ do
-  visit project_path(@project)
-  page.should have_content 'You don\'t have access to view this project!'
+Given /^I'm not a member of this project$/ do
+  @project.member?(@user).should == false
 end
 
 When /^I create a new project$/ do
@@ -101,4 +102,9 @@ Then /^I should see this project's user stories count by status$/ do
       page.should have_content '2'
     end
   end
+end
+
+Then /^I should not be able to access this project$/ do
+  visit project_path(@project)
+  page.should have_content 'You don\'t have access to this project!'
 end

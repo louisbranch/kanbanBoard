@@ -23,4 +23,9 @@ class ApplicationController < ActionController::Base
     redirect_to login_path
   end
   
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = 'You don\'t have access to this project!'
+    redirect_to root_path
+  end
+  
 end

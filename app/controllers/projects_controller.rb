@@ -1,8 +1,9 @@
 class ProjectsController < ApplicationController
 	before_filter :require_login
+	load_and_authorize_resource
 	
 	def index
-    @projects = Project.all
+    @projects = current_user.projects.all
     @statuses = Status.all
 	end
 	
@@ -18,6 +19,7 @@ class ProjectsController < ApplicationController
 	def create
 	  @project = Project.new(params[:project])
 	  if @project.save
+	    current_user.projects << @project
 	    redirect_to projects_path, :notice => 'Project Created!'
 	  else
 	    show_errors(@project)

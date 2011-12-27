@@ -1,5 +1,7 @@
 Given /^an user story exists$/ do
-  @user_story = Factory(:user_story)
+  @project = Factory(:project)
+  @user.projects << @project
+  @user_story = Factory(:user_story, :project => @project)
 end
 
 Given /^this user story doesn't have story points$/ do
@@ -8,6 +10,7 @@ end
 
 Given /^two user stories exist on the same project and status$/ do
   @project = Factory(:project)
+  @user.projects << @project
   @status_1 = Factory(:status, :name => 'Backlog')
   @status_2 = Factory(:status, :name => 'Doing')
   @user_story_1 = Factory(:user_story, :project => @project, :status => @status_1, :name => 'User Story 1')
@@ -16,6 +19,7 @@ end
 
 Given /^(\d+) user stories exist on the same project and status$/ do |num|
   @project = Factory(:project)
+  @user.projects << @project
   @status = Factory(:status)
   user_stories = FactoryGirl.create_list(:user_story, num.to_i, :project => @project, :status => @status)
 end
@@ -26,7 +30,7 @@ Given /^I can only see the first (\d+) user stories$/ do |num|
 end
 
 When /^I create a new user story$/ do
-  visit project_path(Project.first)
+  visit project_path(@project)
   click_on 'New User Story'
   fill_in 'Name', :with => 'Creating an User Story'
   fill_in 'Description', :with => 'In order to describe a new feature for a project...'
@@ -34,14 +38,14 @@ When /^I create a new user story$/ do
 end
 
 When /^I try to create a new user story without filling in the required fields$/ do
-  visit new_project_user_story_path(Project.first)
+  visit new_project_user_story_path(@project)
   fill_in 'Name', :with => ''
   fill_in 'Description', :with => ''
   click_on 'Create User story'
 end
 
 When /^I update this user story$/ do
-  visit project_path(Project.first)
+  visit project_path(@project)
   within("li#user_story_#{@user_story.id}") do
     click_on 'Edit'
   end
@@ -51,20 +55,20 @@ When /^I update this user story$/ do
 end
 
 When /^I try to update an user story without filling in the required fields$/ do
-  visit edit_project_user_story_path(Project.first, @user_story)
+  visit edit_project_user_story_path(@project, @user_story)
   fill_in 'Name', :with => ''
   fill_in 'Description', :with => ''
   click_on 'Update User story'
 end
 
 When /^I update this user story story points$/ do
-  visit edit_project_user_story_path(Project.first, @user_story)
+  visit edit_project_user_story_path(@project, @user_story)
   select('13', :from => 'Story Points')
   click_on 'Update User story'
 end
 
 When /^I update this user story status$/ do
-  visit edit_project_user_story_path(Project.first, @user_story)
+  visit edit_project_user_story_path(@project, @user_story)
   select('Doing', :from => 'Status')
   click_on 'Update User story'
 end
@@ -137,7 +141,7 @@ Then /^I should see this user story story points$/ do
 end
 
 Then /^I should see this user story listed on the correct status section$/ do
-  visit project_path(Project.first)
+  visit project_path(@user_story.project)
   @user_story.status.name.should == 'Backlog'
   within("section#doing") do
     within("li#user_story_#{@user_story.id}") do
@@ -167,7 +171,7 @@ Then /^I should see all the (\d+) user stories on this status$/ do |num|
 end
 
 Then /^I should see this user story story points as '\?'$/ do
-  visit project_path(Project.first)
+  visit project_path(@project)
   within("li#user_story_#{@user_story.id}") do
     page.should have_content '?'
   end
