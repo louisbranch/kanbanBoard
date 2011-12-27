@@ -4,6 +4,6 @@ Feature: Logout
 	I want to logout
 	
 	Scenario: Successful logout
-		Given I log in
+		Given I'm logged in
 		When I log out
 		Then I should not access the site and its projects

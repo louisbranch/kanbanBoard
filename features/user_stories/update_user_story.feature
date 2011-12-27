@@ -4,7 +4,7 @@ Feature: Updating an User Story
 	I want to update an user story
 
 	Background:
-		Given I log in
+		Given I'm logged in
 		Given an user story exists
 
 	Scenario: Updating an user story

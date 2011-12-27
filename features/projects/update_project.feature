@@ -4,7 +4,7 @@ Feature: Updating a Project
 	I want to update a project
 	
 	Background:
-		Given I log in
+		Given I'm logged in
 		Given a project exists
 	
 	Scenario: Updating a project

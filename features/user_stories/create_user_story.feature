@@ -4,7 +4,7 @@ Feature: Creating an User Story
 	I want to create an User Story
 	
 	Background:
-		Given I log in
+		Given I'm logged in
 		And a project exists
 		And a status system exists
 	

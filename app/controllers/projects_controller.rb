@@ -1,13 +1,9 @@
 class ProjectsController < ApplicationController
-	before_filter :authorize, :except => :index
+	before_filter :require_login
 	
 	def index
-	  if logged_in?
-      @projects = Project.all
-	    @statuses = Status.all
-    else
-      render 'sessions/new'
-    end
+    @projects = Project.all
+    @statuses = Status.all
 	end
 	
 	def show

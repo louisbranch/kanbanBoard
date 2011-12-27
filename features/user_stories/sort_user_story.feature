@@ -4,7 +4,7 @@ Feature: Sorting User Stories
 	I want to sort user stories
 
 	Background:
-		Given I log in
+		Given I'm logged in
 	
 	@javascript
 	Scenario:

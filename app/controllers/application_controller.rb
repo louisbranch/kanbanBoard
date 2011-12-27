@@ -2,8 +2,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :create_body_identifiers
   
-  helper_method :logged_in?
-  
   def show_errors(target)
     if target.errors.any?
       flash.now[:error] ||= []
@@ -20,16 +18,9 @@ class ApplicationController < ActionController::Base
     @body_id = params[:action]
   end
   
-  def authorize
-    unless logged_in?
-      flash.now[:error] = "Not here, Cowboy!"
-      redirect_to root_path
-      false
-    end
-  end
-  
-  def logged_in?
-    session[:password]
+  def not_authenticated
+    flash[:error] = 'You must login to access this page.'
+    redirect_to login_path
   end
   
 end

@@ -4,7 +4,7 @@ Feature: Creating a Project
 	I want to create a project
 	
 	Background:
-		Given I log in
+		Given I'm logged in
 	
 	Scenario: Creating a new project
 		When I create a new project

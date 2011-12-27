@@ -4,7 +4,7 @@ Feature: Update User Stories Statuses
 	I want to update user stories statuses
 
 	Background:
-		Given I log in
+		Given I'm logged in
 		And an user story exists
 		And a status system exists
 

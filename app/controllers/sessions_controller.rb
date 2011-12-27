@@ -1,21 +1,18 @@
 class SessionsController < ApplicationController
 
 	def create
-	  ENV['PASSWORD'] ||= 'foobar'
-	  if params[:password] == ENV['PASSWORD']
-	    session[:password] = params[:password]
-	    flash[:notice] = "Welcome Back!"
-		  redirect_to root_path 
-	  else
-	    flash[:error] = "Invalid Password!"
-		  redirect_to root_path
-	  end
-	end
+    user = login(params[:email], params[:password])
+    if user
+      redirect_back_or_to root_path, :notice => "Logged in!"
+    else
+      flash.now[:error] = "Email or password was invalid"
+      render :new
+    end
+  end
 
-	def destroy
-		reset_session
-		flash[:notice] = "See you later!"
-		redirect_to root_path
-	end
+  def destroy
+    logout
+    redirect_to root_path, :notice => "You've logged out!"
+  end
 
 end

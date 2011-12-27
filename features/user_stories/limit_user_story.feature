@@ -4,7 +4,7 @@ Feature: Limit items for User Stories
 	I want to display only the first 4 user stories for each status
 	
 	Background:
-		Given I log in
+		Given I'm logged in
 	
 	@javascript
 	Scenario: Displaying only the first 4 user stories for each status
