@@ -19,7 +19,7 @@ end
 
 When /^I log out$/ do
   click_on 'Log out'
-  page.should have_content 'You\'ve logged out!!'
+  page.should have_content 'You\'ve logged out!'
 end
 
 Then /^I should access the site and its projects$/ do
