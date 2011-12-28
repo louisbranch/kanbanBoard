@@ -14,3 +14,6 @@ Feature: Creating a Project
 		When I try to create a new project without filling in the required fields
 		Then I should see an error message that denied the project creation
 		
+	Scenario: Empty Project List
+		Given I don't have any projects
+		Then I should see an empty project list

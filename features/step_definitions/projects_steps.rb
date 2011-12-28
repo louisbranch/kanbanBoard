@@ -1,3 +1,7 @@
+Given /^I don't have any projects$/ do
+  @user.projects.empty?.should == true
+end
+
 Given /^I have a project$/ do
   @project = Factory(:project)
   @user.projects << @project
@@ -62,6 +66,11 @@ When /^I delete this project$/ do
     click_on 'Delete'
   end
 end
+
+Then /^I should see an empty project list$/ do
+  page.should have_content 'No projects yet'
+end
+
 
 Then /^I should see this project listed$/ do
   Project.count.should == 1
