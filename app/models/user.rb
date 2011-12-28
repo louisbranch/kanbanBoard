@@ -9,7 +9,8 @@ class User < ActiveRecord::Base
   
   validates :password,  :presence => true,
                         :length => 3..20,
-                        :confirmation => true
+                        :confirmation => true,
+                        :on => :create
   validates :email,     :presence => true,
                         :format => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i,
                         :uniqueness => {:case_sensitive => false}

@@ -6,7 +6,7 @@
       %strong
         Members:
       = project.members
-      = link_to 'manage', root_path
+      = link_to 'manage', project_members_path(project)
   - @statuses.each do |status|
     %td{ :class => status.alias }= project.user_stories.by_status(status).count
   %td= link_to 'Edit', edit_project_path(project)

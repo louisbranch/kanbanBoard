@@ -1,0 +1,5 @@
+%li{:id => ['member', member.id]}
+  = member.name
+  = member.email
+  - unless current_user == member
+    = link_to 'remove', project_member_path(@project, member), :method => :delete, :confirm => 'Are you sure?'

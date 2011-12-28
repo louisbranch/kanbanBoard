@@ -3,6 +3,7 @@ KanbanBoard::Application.routes.draw do
   resource :home, :only => [:show], :controller => 'home'
   
   resources :projects do
+    resources :members
     resources :user_stories do
       post 'update_status', :on => :collection
     end
