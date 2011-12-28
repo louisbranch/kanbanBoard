@@ -1,16 +1,16 @@
 = error_messages_for(@user_story)
 =form_for([@project, @user_story], :remote => true) do |f|
   %div
-    =f.label :name, 'Name'
+    =f.label :name
     =f.text_field :name, :autofocus => true
   %div
-    =f.label :description, 'Description'
+    =f.label :description
     =f.text_area :description
   %div
     =f.label :story_point_id, 'Story Points'
     =f.collection_select(:story_point_id, @story_points, :id, :value, :include_blank => '?')
   %div#status
-    =f.label :status_id, 'Status'
+    =f.label :status_id
     =f.collection_select(:status_id, @statuses, :id, :name)
   %div
     =f.submit :class => 'button'

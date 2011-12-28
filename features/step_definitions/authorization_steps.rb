@@ -3,7 +3,7 @@ Given /^I sign up$/ do
   fill_in 'Name', :with => 'Luiz Branco'
   fill_in 'Email', :with => 'artfikan@gmail.com'
   fill_in 'Password', :with => 'secret'
-  fill_in 'Password Confirmation', :with => 'secret'
+  fill_in 'Password confirmation', :with => 'secret'
   click_on 'Sign Up'
 end
 
