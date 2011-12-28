@@ -14,11 +14,23 @@ body.projects
         font-weight: bold
         background-color: #f0f0f0
         border-bottom: 1px solid #ccc
+        &.project_name
+          text-align: left
     td
       padding: 5px
       text-align: center
-      &.project_name, &.project_description
+      &.project_info
         text-align: left
+        h3
+        div
+          &.project_name
+            font-size: 120%
+          &.project_description
+            margin: 2px 0
+            color: #666
+          &.project_members
+            font-size: 90%
+            color: #666
   div.empty_list
     margin-top: -20px
     margin-bottom: 20px

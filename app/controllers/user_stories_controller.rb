@@ -16,7 +16,6 @@ class UserStoriesController < ApplicationController
         format.js { @user_story }
       end
     else
-      show_errors(@user_story)
       respond_to do |format|
         format.html { render :new }
         format.js { @user_story }
@@ -38,7 +37,6 @@ class UserStoriesController < ApplicationController
         format.js { @user_story }
       end
     else
-      show_errors(@user_story)
       respond_to do |format|
         format.html { render :edit }
         format.js { @user_story }
@@ -54,7 +52,6 @@ class UserStoriesController < ApplicationController
         format.js { @user_story }
       end
     else
-      show_errors(@user_story)
       redirect_to @project
     end
   end

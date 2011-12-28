@@ -1,6 +1,7 @@
 Given /^I sign up$/ do
   visit signup_path
-  fill_in 'Email', :with => 'branco@mobplug.com'
+  fill_in 'Name', :with => 'Luiz Branco'
+  fill_in 'Email', :with => 'artfikan@gmail.com'
   fill_in 'Password', :with => 'secret'
   fill_in 'Password Confirmation', :with => 'secret'
   click_on 'Sign Up'

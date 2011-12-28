@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   
   attr_accessible :name, :email, :password, :password_confirmation
   
+  validates :name,      :presence => true, :length => 3..20
+  
   validates :password,  :presence => true,
                         :length => 3..20,
                         :confirmation => true

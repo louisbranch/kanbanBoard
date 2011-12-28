@@ -22,7 +22,6 @@ class ProjectsController < ApplicationController
 	    current_user.projects << @project
 	    redirect_to projects_path, :notice => 'Project Created!'
 	  else
-	    show_errors(@project)
 	    render :new
 	  end
 	end
@@ -36,7 +35,6 @@ class ProjectsController < ApplicationController
 	  if @project.update_attributes(params[:project])
 	    redirect_to projects_path, :notice => 'Project Updated!'
 	  else
-	    show_errors(@project)
 	    render :edit
 	  end
 	end
@@ -46,7 +44,6 @@ class ProjectsController < ApplicationController
 	  if @project.destroy
 	    redirect_to projects_path, :notice => 'Project Deleted!'
 	  else
-	    show_errors(@project)
 	    render :index
 	  end
 	end

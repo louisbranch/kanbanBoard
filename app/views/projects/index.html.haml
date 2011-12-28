@@ -2,7 +2,6 @@
 %table#projects_list
   %thead
     %td.project_name Project
-    %td.project_description Description
     - @statuses.each do |status|
       %td{ :class => status.alias }= status.name
     %td

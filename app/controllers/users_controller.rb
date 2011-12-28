@@ -10,7 +10,6 @@ class UsersController < ApplicationController
 		  auto_login(@user)
 		  redirect_to projects_path, :notice => "Signed up!"
 		else
-		  show_errors(@user)
 		  render :new
 		end
 	end

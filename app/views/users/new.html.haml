@@ -1,5 +1,9 @@
 %h2 Sign Up
+= error_messages_for(@user)
 =form_for @user do |f|
+  %div
+    =f.label :name, 'Name'
+    =f.text_field :name
   %div
     =f.label :email, 'Email'
     =f.text_field :email

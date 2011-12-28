@@ -10,4 +10,12 @@ class Project < ActiveRecord::Base
     users.exists?(user.id)
   end
   
+  def members
+    if users.count == 1
+      'Only me'
+    else
+      users.map(&:name).join(", ")
+    end
+  end
+  
 end
