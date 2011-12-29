@@ -1,4 +1,9 @@
 %h2= link_to @project.name, project_path(@project)
 %h3 Members
-%ul
-  =render :partial => 'member', :collection => @members
+%table
+  %thead
+    %td Name
+    %td Email
+    %td
+  %tbody
+    =render :partial => 'member', :collection => @members

@@ -1,5 +1,7 @@
-%li{:id => ['member', member.id]}
-  = member.name
-  = member.email
+%tr{:id => ['member', member.id]}
+  %td= member.name
+  %td= member.email
   - unless current_user == member
-    = link_to 'remove', project_member_path(@project, member), :method => :delete, :confirm => 'Are you sure?'
+    %td= link_to 'remove', project_member_path(@project, member), :method => :delete, :confirm => 'Are you sure?'
+  - else
+    %td

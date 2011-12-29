@@ -4,33 +4,20 @@ body.projects
   a#new_story
     float: right
   table#projects_list
-    clear: both
-    width: 100%
-    border: 1px solid #ccc
-    border-collapse: collapse
-    margin: 10px 0 20px
-    thead
-      td
-        font-weight: bold
-        background-color: #f0f0f0
-        border-bottom: 1px solid #ccc
+    thead td.project_name
+      text-align: left
+    td.project_info
+      text-align: left
+      h3
+      div
         &.project_name
-          text-align: left
-    td
-      padding: 5px
-      text-align: center
-      &.project_info
-        text-align: left
-        h3
-        div
-          &.project_name
-            font-size: 120%
-          &.project_description
-            margin: 2px 0
-            color: #666
-          &.project_members
-            font-size: 90%
-            color: #666
+          font-size: 120%
+        &.project_description
+          margin: 2px 0
+          color: #666
+        &.project_members
+          font-size: 90%
+          color: #666
   div.empty_list
     margin-top: -20px
     margin-bottom: 20px
