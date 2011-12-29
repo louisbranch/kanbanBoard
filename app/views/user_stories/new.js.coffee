@@ -1,3 +1,5 @@
+if $('div#form').length
+  $('div#form').remove()
 $("<div id=form></div>").dialog
   title: 'New User Story',
   width: 400,
