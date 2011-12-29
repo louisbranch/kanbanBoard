@@ -26,7 +26,6 @@ class UserStoriesController < ApplicationController
   def edit
     @user_story = UserStory.find(params[:id])
     @statuses = Status.all
-    @story_points = StoryPoint.all
   end
   
   def update
@@ -71,7 +70,7 @@ class UserStoriesController < ApplicationController
   def load_resources
     @project = Project.find(params[:project_id])    
     @statuses = Status.all
-    @story_points = StoryPoint.all
+    @story_sizes = StorySize.all
   end
   
 end

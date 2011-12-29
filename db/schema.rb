@@ -36,8 +36,8 @@ ActiveRecord::Schema.define(:version => 20111227181556) do
     t.datetime "updated_at"
   end
 
-  create_table "story_points", :force => true do |t|
-    t.string   "value"
+  create_table "story_sizes", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -47,15 +47,15 @@ ActiveRecord::Schema.define(:version => 20111227181556) do
     t.text     "description"
     t.integer  "position"
     t.integer  "project_id"
-    t.integer  "status_id",      :default => 1
-    t.integer  "story_point_id"
+    t.integer  "status_id"
+    t.integer  "story_size_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "user_stories", ["project_id"], :name => "index_user_stories_on_project_id"
   add_index "user_stories", ["status_id"], :name => "index_user_stories_on_status_id"
-  add_index "user_stories", ["story_point_id"], :name => "index_user_stories_on_story_point_id"
+  add_index "user_stories", ["story_size_id"], :name => "index_user_stories_on_story_size_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"

@@ -4,8 +4,8 @@ Given /^an user story exists$/ do
   @user_story = Factory(:user_story, :project => @project)
 end
 
-Given /^this user story doesn't have story points$/ do
-  @user_story.story_point.should == nil
+Given /^this user story doesn't have story sizes$/ do
+  @user_story.story_size.should == nil
 end
 
 Given /^two user stories exist on the same project and status$/ do
@@ -61,9 +61,9 @@ When /^I try to update an user story without filling in the required fields$/ do
   click_on 'Update User story'
 end
 
-When /^I update this user story story points$/ do
+When /^I update this user story story sizes$/ do
   visit edit_project_user_story_path(@project, @user_story)
-  select('13', :from => 'Story Points')
+  select('Small', :from => 'Story Size')
   click_on 'Update User story'
 end
 
@@ -134,9 +134,9 @@ Then /^I should see this user story updated$/ do
   end
 end
   
-Then /^I should see this user story story points$/ do
+Then /^I should see this user story story sizes$/ do
   within("li#user_story_#{@user_story.id}") do
-    page.should have_content '13'
+    page.should have_content 'S'
   end
 end
 
@@ -170,7 +170,7 @@ Then /^I should see all the (\d+) user stories on this status$/ do |num|
   find("li#user_story_#{@project.user_stories.last.id}").visible?.should == true
 end
 
-Then /^I should see this user story story points as '\?'$/ do
+Then /^I should see this user story story sizes as '\?'$/ do
   visit project_path(@project)
   within("li#user_story_#{@user_story.id}") do
     page.should have_content '?'
