@@ -1,4 +1,5 @@
 %li{:id => ['invitation', invitation.id]}
-  = "#{invitation.user.name} has sent an invitation to join #{invitation.project.name}"
+  = "#{invitation.user_name} has sent an invitation to join #{invitation.project_name}"
   = link_to 'Accept', invitation_path(invitation), :method => :put, :class => 'button'
   = link_to 'Dismiss', invitation_path(invitation), :method => :delete, :class => 'button'
+

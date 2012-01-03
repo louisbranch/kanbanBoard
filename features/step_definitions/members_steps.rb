@@ -79,3 +79,4 @@ Then /^I should be member of this project$/ do
   page.should have_content 'Project added!'
   @project.member?(@user).should == true
 end
+

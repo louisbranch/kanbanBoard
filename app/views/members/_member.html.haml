@@ -3,9 +3,10 @@
   %td= member.email
   - unless current_user == member
     %td
-      - if @project.member?(member)
-        = link_to 'remove', project_member_path(@project, member), :method => :delete, :confirm => 'Are you sure?'
+      - if project.member?(member)
+        = link_to 'remove', project_member_path(project, member), :method => :delete, :confirm => 'Are you sure?'
       - else
-        = link_to 'add', project_members_path(@project, :id => member.id), :method => :post
+        = link_to 'add', project_members_path(project, :id => member.id), :method => :post
   - else
     %td
+

@@ -3,7 +3,7 @@ class Ability
 
   def initialize(user)
     user ||= User.new # guest user
-    
+
     can :create, Project
     can :read, Project do |project|
       project.member?(user)
@@ -14,7 +14,7 @@ class Ability
     can :destroy, Project do |project|
       project.member?(user)
     end
-    
+
     can :create, UserStory
     can :read, UserStory do |user_story|
       user_story.project.member?(user)
@@ -26,8 +26,9 @@ class Ability
       user_story.project.member?(user)
     end
     can :update_status, UserStory do |user_story|
-      project.member?(user)
+      user_story.project.member?(user)
     end
-    
+
   end
 end
+

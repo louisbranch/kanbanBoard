@@ -2,7 +2,7 @@
   %ul{:id => "flash_#{name}"}
     - if msg.is_a?(String)
       %li= msg
-    - else      
+    - else
       - msg.each do |m|
         %li= m
 

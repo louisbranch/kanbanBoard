@@ -16,5 +16,5 @@
         %td Email
         %td Action
       %tbody
-        =render :partial => 'member', :collection => @members
-  
+        =render :partial => 'member', :collection => @members, :locals => { :project => @project }
+

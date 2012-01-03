@@ -6,5 +6,6 @@
     %td Email
     %td Actions
   %tbody
-    =render :partial => 'member', :collection => @members
+    =render :partial => 'member', :collection => @members, :locals => { :project => @project }
 = link_to 'Add Member', new_project_member_path(@project), :class => 'button'
+

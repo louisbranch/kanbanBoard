@@ -28,12 +28,14 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'spork', '> 0.9.0.rc'
   gem 'guard-spork'
+  gem 'guard-rspec'
   gem 'guard-cucumber'
   gem 'capybara'
   gem 'launchy'
   gem 'libnotify'
   gem 'rb-inotify'
   gem 'fuubar-cucumber'
+  gem 'simplecov'
 end
 
 group :production do

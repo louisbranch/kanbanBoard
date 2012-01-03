@@ -89,6 +89,8 @@ GEM
     guard-cucumber (0.7.4)
       cucumber (>= 0.10)
       guard (>= 0.8.3)
+    guard-rspec (0.5.11)
+      guard (>= 0.8.4)
     guard-spork (0.3.2)
       guard (>= 0.8.4)
       spork (>= 0.8.4)
@@ -179,6 +181,10 @@ GEM
       ffi (~> 1.0.9)
       json_pure
       rubyzip
+    simplecov (0.5.4)
+      multi_json (~> 1.0.3)
+      simplecov-html (~> 0.5.3)
+    simplecov-html (0.5.3)
     sorcery (0.7.5)
       bcrypt-ruby (~> 3.0.0)
       oauth (~> 0.4.4)
@@ -222,6 +228,7 @@ DEPENDENCIES
   factory_girl_rails
   fuubar-cucumber
   guard-cucumber
+  guard-rspec
   guard-spork
   haml
   haml-rails
@@ -233,6 +240,7 @@ DEPENDENCIES
   rb-inotify
   rspec-rails
   sass-rails (~> 3.1.0)
+  simplecov
   sorcery
   spork (> 0.9.0.rc)
   sqlite3

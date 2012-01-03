@@ -6,9 +6,10 @@ Status.create([
   { :name => 'Validating'},
   { :name => 'Archived'}
   ])
-  
+
 StorySize.create([
   { :name => 'Small' },
   { :name => 'Medium' },
   { :name => 'Large'}
   ])
+

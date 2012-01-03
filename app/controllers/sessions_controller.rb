@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 
-	def create
+  def create
     user = login(params[:email], params[:password])
     if user
       redirect_back_or_to projects_path, :notice => "Logged in!"
@@ -16,3 +16,4 @@ class SessionsController < ApplicationController
   end
 
 end
+

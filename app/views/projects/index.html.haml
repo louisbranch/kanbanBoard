@@ -11,7 +11,8 @@
     %td
     %td
   %tbody
-    = render @projects
+    = render @projects, :statuses => @statuses
 - if @projects.empty?
   %div.empty_list No projects yet
 =link_to 'New Project', new_project_path, :class => 'button'
+
