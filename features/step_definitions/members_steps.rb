@@ -56,7 +56,7 @@ end
 
 When /^I invite her to join kanbanBoard$/ do
   page.should have_content 'jd@gmail.com was not found.'
-  click_on 'Invite it to join kanbanBoard'
+  click_on 'Invite to kanbanBoard'
 end
 
 Then /^I should see only me listed for this project$/ do

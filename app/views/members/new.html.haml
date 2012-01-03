@@ -8,7 +8,7 @@
 - if @members
   - if @members.empty?
     = "#{@search} was not found."
-    = link_to "Invite it to join kanbanBoard", invitations_path( :project_id => @project.id, :email => @search ), :method => 'post'
+    = link_to "Invite to kanbanBoard", invitations_path( :project_id => @project.id, :email => @search ), :method => :post, :class => 'button'
   - else
     %table
       %thead
