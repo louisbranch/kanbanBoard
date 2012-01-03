@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   
   attr_accessible :name, :email, :password, :password_confirmation
   
+  EMAIL_REGEX = /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
+  
   validates :name,      :presence => true
   
   validates :password,  :presence => true,
@@ -12,6 +14,22 @@ class User < ActiveRecord::Base
                         :confirmation => true,
                         :on => :create
   validates :email,     :presence => true,
-                        :format => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i,
+                        :format => EMAIL_REGEX,
                         :uniqueness => {:case_sensitive => false}
+  
+  def self.search(query)
+    if query.match(EMAIL_REGEX)
+     where('email = ?', query)
+    else
+      raise InvalidEmailFormat
+    end
+  end
+  
+  def invitations
+    Invitation.search(email)
+  end
+  
+  class InvalidEmailFormat < StandardError
+  end
+  
 end

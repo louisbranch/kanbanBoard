@@ -1,3 +1,7 @@
+- if @invitations.any?
+  %h2 Invitations
+  %ul#invitation_list
+    = render @invitations
 %h2 Projects
 %table#projects_list
   %thead
@@ -10,5 +14,4 @@
     = render @projects
 - if @projects.empty?
   %div.empty_list No projects yet
-      
 =link_to 'New Project', new_project_path, :class => 'button'

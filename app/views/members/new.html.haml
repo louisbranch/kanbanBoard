@@ -1,0 +1,20 @@
+%h2= link_to @project.name, project_path(@project)
+%h3 Add Member
+= form_tag new_project_member_path(@project), :method => 'get' do
+  %div
+    = label_tag :search, 'Email'
+    = text_field_tag :search, params[:search], :autofocus => true
+    = submit_tag "Search", :name => nil, :class => 'button'
+- if @members
+  - if @members.empty?
+    = "#{@search} was not found."
+    = link_to "Invite it to join kanbanBoard", invitations_path( :project_id => @project.id, :email => @search ), :method => 'post'
+  - else
+    %table
+      %thead
+        %td Name
+        %td Email
+        %td Action
+      %tbody
+        =render :partial => 'member', :collection => @members
+  

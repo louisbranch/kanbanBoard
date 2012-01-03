@@ -4,6 +4,7 @@
   %thead
     %td Name
     %td Email
-    %td
+    %td Actions
   %tbody
     =render :partial => 'member', :collection => @members
+= link_to 'Add Member', new_project_member_path(@project)

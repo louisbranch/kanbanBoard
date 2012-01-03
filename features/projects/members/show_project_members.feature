@@ -8,8 +8,8 @@ Feature: Show Project Members
 		And I have a project
 		
 	Scenario: Show all members of a project
-		Given that this project has more 2 members
-		Then I should see 3 members listed for this project
+		Given that this project has another member
+		Then I should see 2 members listed for this project
 	
 	Scenario: Show only one member of a project
 		Given I'm the only member of this project

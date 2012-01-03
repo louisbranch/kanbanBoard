@@ -3,8 +3,9 @@ class ProjectsController < ApplicationController
 	load_and_authorize_resource
 	
 	def index
-    @projects = current_user.projects.all
+    @projects = current_user.projects
     @statuses = Status.all
+    @invitations = current_user.invitations
 	end
 	
 	def show

@@ -8,8 +8,8 @@ Feature: Remove Project Members
 		And I have a project
 	
 	Scenario: Remove project members
-		Given that this project has more 2 members
-		When I remove both members from this project
+		Given that this project has another member
+		When I remove this member from this project
 		Then I should see only me listed for this project
 	
 	
