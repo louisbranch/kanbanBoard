@@ -2,9 +2,9 @@
 %h3 Members
 %table
   %thead
-    %td Name
-    %td Email
-    %td Actions
+    %th Name
+    %th Email
+    %th Actions
   %tbody
     =render :partial => 'member', :collection => @members, :locals => { :project => @project }
 = link_to 'Add Member', new_project_member_path(@project), :class => 'button'

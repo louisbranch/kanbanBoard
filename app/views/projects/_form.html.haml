@@ -7,5 +7,17 @@
     =f.label :description
     =f.text_area :description
   %div
+    %h3 Statuses
+    %table
+      %thead
+        %tr
+          %th Name
+          %th WIP
+      %tbody
+        - statuses.each do |status|
+          %tr{:id => ['status', status.id]}
+            %td= status.name
+            %td= select_tag("WIP", options_for_select(1..10), :prompt => 'unlimited')
+  %div
     =f.submit :class => 'button'
 

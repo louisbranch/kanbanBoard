@@ -1,10 +1,10 @@
 class ProjectsController < ApplicationController
   before_filter :require_login
+  before_filter :load_statuses
   load_and_authorize_resource
 
   def index
     @projects = current_user.projects
-    @statuses = Status.all
     @invitations = current_user.invitations
   end
 
@@ -47,6 +47,12 @@ class ProjectsController < ApplicationController
     else
       render :index
     end
+  end
+
+  private
+
+  def load_statuses
+    @statuses = Status.all
   end
 
 end

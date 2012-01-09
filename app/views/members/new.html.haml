@@ -12,9 +12,9 @@
   - else
     %table
       %thead
-        %td Name
-        %td Email
-        %td Action
+        %th Name
+        %th Email
+        %th Action
       %tbody
         =render :partial => 'member', :collection => @members, :locals => { :project => @project }
 

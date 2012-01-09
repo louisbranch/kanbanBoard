@@ -5,11 +5,11 @@
 %h2 Projects
 %table#projects_list
   %thead
-    %td.project_name Project
+    %th.project_name Project
     - @statuses.each do |status|
-      %td{ :class => status.alias }= status.name
-    %td
-    %td
+      %th{ :class => status.alias }= status.name
+    %th
+    %th
   %tbody
     = render @projects, :statuses => @statuses
 - if @projects.empty?
