@@ -1,5 +1,5 @@
-%li{:id => ['user_story', user_story.id], :class => 'user_stories'}
-  %header
+%li{:id => ['user_story', user_story.id], :class => "user_stories"}
+  %header{ :class => "#{user_story.size_alias}" }
     %h4= user_story.name
     %span.story_size= user_story.size
   %div.details= highlight_user_story(user_story.description)

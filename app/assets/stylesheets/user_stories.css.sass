@@ -8,19 +8,19 @@ li.user_stories
     border: 1px solid #F5DC7D
     height: 30px
     box-shadow: none
-  &.must_have header
-    background-color: #FF8D86
-  &.should_have header
-    background-color: orange
-  &.could_have header
-    background-color: #E0E041
   header
     cursor: move
-    background-color: #C2D288
-    border-bottom: 1px solid #111
+    background-color: #E3E93E
+    border-bottom: 1px solid #111 //yellow
     padding: 5px
     overflow: hidden
     position: relative
+    &.small
+      background-color: #C2D288 //green
+    &.medium
+      background-color: #D1D4F9 //blue
+    &.large
+      background-color: #FF8D86 //red
     h4
       float: left
       margin-right: 25px
@@ -67,3 +67,4 @@ li.user_stories
     cursor: pointer
     font-weight: bold
     text-decoration: none
+

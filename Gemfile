@@ -22,7 +22,7 @@ group :development, :test do
   gem 'sqlite3'
   gem 'execjs'
   gem 'therubyracer'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 2.8.1'
   gem 'cucumber-rails'
   gem 'database_cleaner'
   gem 'factory_girl_rails'

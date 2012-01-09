@@ -4,7 +4,7 @@ Status.create([
   { :name => 'Doing' },
   { :name => 'Done'},
   { :name => 'Validating'},
-  { :name => 'Archived'}
+  { :name => 'Finished'}
   ])
 
 StorySize.create([

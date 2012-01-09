@@ -133,9 +133,10 @@ Then /^I should see this user story updated$/ do
     page.should have_content 'In order to change a user story information...'
   end
 end
-  
+
 Then /^I should see this user story story sizes$/ do
   within("li#user_story_#{@user_story.id}") do
+    page.should have_css('header.small')
     page.should have_content 'S'
   end
 end
@@ -176,3 +177,4 @@ Then /^I should see this user story story sizes as '\?'$/ do
     page.should have_content '?'
   end
 end
+

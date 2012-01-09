@@ -18,5 +18,11 @@ class UserStory < ActiveRecord::Base
     end
   end
 
+  def size_alias
+    if story_size
+      story_size.name.downcase.gsub(' ','_')
+    end
+  end
+
 end
 
