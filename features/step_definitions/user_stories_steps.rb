@@ -39,13 +39,6 @@ When /^I create a new user story$/ do
   click_on 'Create User story'
 end
 
-When /^I try to create a new user story without filling in the required fields$/ do
-  visit new_project_user_story_path(@project)
-  fill_in 'Name', :with => ''
-  fill_in 'Description', :with => ''
-  click_on 'Create User story'
-end
-
 When /^I update this user story$/ do
   visit project_path(@project)
   within("li#user_story_#{@user_story.id}") do
@@ -53,13 +46,6 @@ When /^I update this user story$/ do
   end
   fill_in 'Name', :with => 'Updating an User Story'
   fill_in 'Description', :with => 'In order to change a user story information...'
-  click_on 'Update User story'
-end
-
-When /^I try to update an user story without filling in the required fields$/ do
-  visit edit_project_user_story_path(@project, @user_story)
-  fill_in 'Name', :with => ''
-  fill_in 'Description', :with => ''
   click_on 'Update User story'
 end
 
@@ -117,16 +103,6 @@ Then /^I should see this user story listed on the project backlog$/ do
       page.should have_content 'In order to describe a new feature for a project...'
     end
   end
-end
-
-Then /^I should see an error message that denied the user story creation$/ do
-  page.should have_content 'Name can\'t be blank'
-  page.should have_content 'Description can\'t be blank'
-end
-
-Then /^I should see an error message that denied the user story update$/ do
-  page.should have_content 'Name can\'t be blank'
-  page.should have_content 'Description can\'t be blank'
 end
 
 Then /^I should see this user story updated$/ do

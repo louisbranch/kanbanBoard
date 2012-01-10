@@ -36,13 +36,6 @@ When /^I create a new project$/ do
   click_on 'Create Project'
 end
 
-When /^I try to create a new project without filling in the required fields$/ do
-  visit new_project_path
-  fill_in 'Name', :with => ''
-  fill_in 'Description', :with => ''
-  click_on 'Create Project'
-end
-
 When /^I update this project information$/ do
   visit projects_path
   within("tr#project_#{@project.id}") do
@@ -50,13 +43,6 @@ When /^I update this project information$/ do
   end
   fill_in 'Name', :with => 'kanbanBoard'
   fill_in 'Description', :with => 'A even simpler way to track User Stories'
-  click_on 'Update Project'
-end
-
-When /^I try to update a project without filling in the required fields$/ do
-  visit edit_project_path(@project)
-  fill_in 'Name', :with => ''
-  fill_in 'Description', :with => ''
   click_on 'Update Project'
 end
 
@@ -85,16 +71,6 @@ Then /^I should see this project listed$/ do
     page.should have_content 'Agile Board'
     page.should have_content 'Simple agile board to track User Stories and Iterations'
   end
-end
-
-Then /^I should see an error message that denied the project creation$/ do
-  page.should have_content 'Name can\'t be blank'
-  page.should have_content 'Description can\'t be blank'
-end
-
-Then /^I should see an error message that denied the project update$/ do
-  page.should have_content 'Name can\'t be blank'
-  page.should have_content 'Description can\'t be blank'
 end
 
 Then /^I should see this project information updated$/ do
