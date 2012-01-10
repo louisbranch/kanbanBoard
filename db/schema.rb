@@ -43,9 +43,13 @@ ActiveRecord::Schema.define(:version => 20120102171833) do
 
   create_table "statuses", :force => true do |t|
     t.string   "name"
+    t.integer  "wip"
+    t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "statuses", ["project_id"], :name => "index_statuses_on_project_id"
 
   create_table "story_sizes", :force => true do |t|
     t.string   "name"

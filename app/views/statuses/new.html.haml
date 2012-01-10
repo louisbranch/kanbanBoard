@@ -1,0 +1,13 @@
+%h2 New Status
+=form_for [@project,@status] do |f|
+  %table
+    %thead
+      %tr
+        %th= f.label :name
+        %th= f.label :wip, 'Work in Progress Limit'
+        - if params[:action] == 'edit'
+          %th= f.label :_destroy, 'Delete'
+    %tbody
+      =render 'form', :f => f
+  =f.submit :class => 'button'
+

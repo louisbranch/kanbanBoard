@@ -1,5 +1,5 @@
 $ dragUserStories = ->
-  if $('section ul').length
+  if $('div#board').length
     $('section ul').sortable
       scroll: false,
       connectWith: 'section ul',
@@ -12,7 +12,7 @@ $ dragUserStories = ->
         $(this).parent().removeClass('active')
       update: ->
         $.post($(this).data('update-url'), $(this).sortable('serialize'))
-          
+
 $ adjustBoardHeight = ->
   if $('div#board').length
     height = $(window).height() - 160
@@ -35,3 +35,4 @@ $ showMoreUserStories = ->
       $(i).click ->
         $(this).hide()
         $(this).parent().children('li.user_stories').fadeIn('fast')
+

@@ -1,7 +1,3 @@
-Given /^I'm the only member of this project$/ do
-  @project.users.count.should == 1
-end
-
 Given /^that this project has another member$/ do
   @user = Factory(:user, :name => 'John Doe')
   @project.users << @user
@@ -47,23 +43,24 @@ When /^I accept this project invitation$/ do
   click_on 'Accept'
 end
 
+Then /^I should see only me listed for this project$/ do
+  visit projects_path
+  within("#project_#{@project.id}") do
+    page.should have_content 'Luiz Branco'
+  end
+end
+
 Then /^I should see 2 members listed for this project$/ do
   visit projects_path
   within("#project_#{@project.id}") do
-    page.should have_content 'Luiz Branco, John Doe'
+    page.should have_content 'Luiz Branco'
+    page.should have_content 'John Doe'
   end
 end
 
 When /^I invite her to join kanbanBoard$/ do
   page.should have_content 'jd@gmail.com was not found.'
   click_on 'Invite to kanbanBoard'
-end
-
-Then /^I should see only me listed for this project$/ do
-  visit projects_path
-  within("#project_#{@project.id}") do
-    page.should have_content 'Only me'
-  end
 end
 
 Then /^she should be a member of this project$/ do

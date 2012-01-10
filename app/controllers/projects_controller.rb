@@ -1,6 +1,5 @@
 class ProjectsController < ApplicationController
   before_filter :require_login
-  before_filter :load_statuses
   load_and_authorize_resource
 
   def index
@@ -10,11 +9,14 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
-    @statuses = Status.all
+    @statuses = @project.statuses
   end
 
   def new
     @project = Project.new
+    8.times do
+      status = @project.statuses.build
+    end
   end
 
   def create
@@ -29,6 +31,9 @@ class ProjectsController < ApplicationController
 
   def edit
     @project = Project.find(params[:id])
+    3.times do
+      status = @project.statuses.build
+    end
   end
 
   def update
@@ -50,10 +55,6 @@ class ProjectsController < ApplicationController
   end
 
   private
-
-  def load_statuses
-    @statuses = Status.all
-  end
 
 end
 

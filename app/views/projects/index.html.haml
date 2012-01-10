@@ -5,13 +5,13 @@
 %h2 Projects
 %table#projects_list
   %thead
-    %th.project_name Project
-    - @statuses.each do |status|
-      %th{ :class => status.alias }= status.name
-    %th
-    %th
+    %th.project_name Name
+    %th Statuses
+    %th User Stories
+    %th Availability
+    %th Members
   %tbody
-    = render @projects, :statuses => @statuses
+    = render @projects
 - if @projects.empty?
   %div.empty_list No projects yet
 =link_to 'New Project', new_project_path, :class => 'button'

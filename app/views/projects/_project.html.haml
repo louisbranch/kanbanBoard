@@ -2,13 +2,24 @@
   %td.project_info
     %h3= link_to project.name, project_path(project)
     %div.project_description= project.description
-    %div.project_members
-      %strong
-        Members:
-      = project.members
-      = link_to 'manage', project_members_path(project)
-  - statuses.each do |status|
-    %td{ :class => status.alias }= project.user_stories.by_status(status).count
-  %td= link_to 'Edit', edit_project_path(project)
-  %td= link_to 'Delete', project_path(project), :method => :delete, :confirm => 'Are you sure?'
+    %div.prokect_actions
+      = link_to 'Edit', edit_project_path(project)
+      = link_to 'Delete', project_path(project), :method => :delete, :confirm => 'Are you sure?'
+
+  %td.statuses
+    %ul
+      - project.statuses.each do |status|
+        %li
+          = status.name
+  %td.user_stories
+    %ul
+      - project.statuses.each do |status|
+        %li
+          = status.user_stories.count
+  %td.availability
+  %td
+    %ul
+      - project.users.each do |member|
+        %li= member.name
+    = link_to 'manage', project_members_path(project)
 

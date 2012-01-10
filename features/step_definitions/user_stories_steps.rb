@@ -1,7 +1,9 @@
 Given /^an user story exists$/ do
   @project = Factory(:project)
+  @status = Factory(:status, :project => @project)
+  @status2 = Factory(:status, :name => 'Doing', :project => @project)
   @user.projects << @project
-  @user_story = Factory(:user_story, :project => @project)
+  @user_story = Factory(:user_story, :project => @project, :status => @status)
 end
 
 Given /^this user story doesn't have story sizes$/ do
@@ -11,16 +13,16 @@ end
 Given /^two user stories exist on the same project and status$/ do
   @project = Factory(:project)
   @user.projects << @project
-  @status_1 = Factory(:status, :name => 'Backlog')
-  @status_2 = Factory(:status, :name => 'Doing')
-  @user_story_1 = Factory(:user_story, :project => @project, :status => @status_1, :name => 'User Story 1')
-  @user_story_2 = Factory(:user_story, :project => @project, :status => @status_1, :name => 'User Story 2')
+  @status = Factory(:status, :name => 'Backlog', :project => @project)
+  @status2 = Factory(:status, :name => 'Doing', :project => @project)
+  @user_story_1 = Factory(:user_story, :project => @project, :status => @status, :name => 'User Story 1')
+  @user_story_2 = Factory(:user_story, :project => @project, :status => @status, :name => 'User Story 2')
 end
 
 Given /^(\d+) user stories exist on the same project and status$/ do |num|
   @project = Factory(:project)
   @user.projects << @project
-  @status = Factory(:status)
+  @status = Factory(:status, :project => @project)
   user_stories = FactoryGirl.create_list(:user_story, num.to_i, :project => @project, :status => @status)
 end
 
@@ -76,7 +78,7 @@ end
 When /^I drag and drop this user story to another status section$/ do
   visit project_path(@user_story.project)
   user_story = find("li#user_story_#{@user_story.id} header")
-  new_section = find("section#doing ul")
+  new_section = find("section#status_#{@status2.id} ul")
   user_story.drag_to(new_section)
 end
 
@@ -96,20 +98,20 @@ When /^I drag and drop the second user story to the top of the first$/ do
   visit project_path(@user_story_1.project)
   user_story_1 = find("li#user_story_#{@user_story_1.id} header")
   user_story_2 = find("li#user_story_#{@user_story_2.id} header")
-  new_section = find("section#doing ul")
+  new_section = find("section#status_#{@status2.id}")
   user_story_2.drag_to(new_section)
   user_story_1.drag_to(new_section)
 end
 
 When /^I click to show the remaining user stories$/ do
-  within("section##{@status.alias}") do
+  within("section#status_#{@status.id}") do
     find("li.show_more_user_stories").click
   end
 end
 
 Then /^I should see this user story listed on the project backlog$/ do
   @project.user_stories.count.should == 1
-  within("section#backlog") do
+  within("section#status_#{@project.statuses.first.id}") do
     within("li#user_story_#{UserStory.first.id}") do
       page.should have_content 'Creating an User Story'
       page.should have_content 'In order to describe a new feature for a project...'
@@ -142,9 +144,8 @@ Then /^I should see this user story story sizes$/ do
 end
 
 Then /^I should see this user story listed on the correct status section$/ do
-  visit project_path(@user_story.project)
-  @user_story.status.name.should == 'Backlog'
-  within("section#doing") do
+  visit project_path(@project)
+  within("section#status_#{@status2.id}") do
     within("li#user_story_#{@user_story.id}") do
       page.should have_content 'Creating an User Story'
       page.should have_content 'In order to describe a new feature for a project...'

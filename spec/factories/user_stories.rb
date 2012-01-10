@@ -6,3 +6,4 @@ FactoryGirl.define do
     association :status
   end
 end
+

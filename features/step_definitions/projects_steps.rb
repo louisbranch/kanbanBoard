@@ -14,7 +14,7 @@ end
 Given /^a project has user stories with status$/ do
   @project = Factory(:project)
   @user.projects << @project
-  @status = Factory(:status, :name => 'Doing')
+  @status = Factory(:status, :name => 'Doing', :project => @project)
   2.times do
     Factory(:user_story, :project => @project, :status => @status)
   end
@@ -113,7 +113,7 @@ end
 Then /^I should see this project's user stories count by status$/ do
   visit projects_path
   within("tr#project_#{@project.id}") do
-    within("td.doing") do
+    within("td.user_stories") do
       page.should have_content '2'
     end
   end

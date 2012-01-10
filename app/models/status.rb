@@ -1,8 +1,7 @@
 class Status < ActiveRecord::Base
+  belongs_to :project
   has_many :user_stories, :order => "position"
 
-  def alias
-    name.downcase.gsub(' ','_')
-  end
+  validates :name, :presence => true
 end
 

@@ -8,16 +8,16 @@
     =f.text_area :description
   %div
     %h3 Statuses
-    %table
+    %table#statuses_form
       %thead
         %tr
-          %th Name
-          %th WIP
+          %th= f.label :name
+          %th= f.label :wip, 'Work in Progress Limit'
+          - if params[:action] == 'edit'
+            %th= f.label :_destroy, 'Delete'
       %tbody
-        - statuses.each do |status|
-          %tr{:id => ['status', status.id]}
-            %td= status.name
-            %td= select_tag("WIP", options_for_select(1..10), :prompt => 'unlimited')
+        = f.fields_for :statuses do |builder|
+          = render 'statuses/form', :f => builder
   %div
     =f.submit :class => 'button'
 
