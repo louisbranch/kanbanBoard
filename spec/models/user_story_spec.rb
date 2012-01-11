@@ -47,7 +47,7 @@ describe UserStory do
       @user_story.size.should == '?'
     end
 
-    it 'returns a blank name' do
+    it 'returns a blank size alias name' do
       @user_story.size_alias.should == nil
     end
 

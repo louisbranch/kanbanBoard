@@ -7,17 +7,5 @@
     =f.label :description
     =f.text_area :description
   %div
-    %h3 Statuses
-    %table#statuses_form
-      %thead
-        %tr
-          %th= f.label :name
-          %th= f.label :wip, 'Work in Progress Limit'
-          - if params[:action] == 'edit'
-            %th= f.label :_destroy, 'Delete'
-      %tbody
-        = f.fields_for :statuses do |builder|
-          = render 'statuses/form', :f => builder
-  %div
     =f.submit :class => 'button'
 

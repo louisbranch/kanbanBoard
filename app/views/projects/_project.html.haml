@@ -2,24 +2,25 @@
   %td.project_info
     %h3= link_to project.name, project_path(project)
     %div.project_description= project.description
-    %div.prokect_actions
-      = link_to 'Edit', edit_project_path(project)
-      = link_to 'Delete', project_path(project), :method => :delete, :confirm => 'Are you sure?'
-
-  %td.statuses
-    %ul
+  %td
+    %ul.project_statuses
       - project.statuses.each do |status|
         %li
           = status.name
-  %td.user_stories
-    %ul
+  %td
+    %ul.project_user_stories
       - project.statuses.each do |status|
         %li
           = status.user_stories.count
-  %td.availability
+  %td.project_availability
   %td
     %ul
       - project.users.each do |member|
         %li= member.name
-    = link_to 'manage', project_members_path(project)
+  %td
+    %ul.project_actions
+      %li= link_to 'edit project', edit_project_path(project)
+      %li= link_to 'statuses', project_statuses_path(project)
+      %li= link_to 'members', project_members_path(project)
+      %li= link_to 'delete project', project_path(project), :method => :delete, :confirm => 'Are you sure?'
 

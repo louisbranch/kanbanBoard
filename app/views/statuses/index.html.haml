@@ -1,0 +1,17 @@
+%h2 Statuses
+%table
+  %thead
+    %tr
+      %th Name
+      %th WIP
+      %th Manage
+  %tbody
+    - @statuses.each do |status|
+      %tr
+        %td= status.name
+        %td= status.wip
+        %td
+          = link_to 'Edit', edit_project_status_path(@project, status)
+          = link_to 'Delete', project_status_path(@project, status), :method => :delete, :confirm => 'Are you sure?'
+= link_to 'Add Status', new_project_status_path(@project), :class => 'button'
+

@@ -12,8 +12,11 @@ body.projects
   a#new_story
     float: right
   table#projects_list
-    thead th.project_name
-      text-align: left
+    thead
+      th.project_name
+        text-align: left
+      th.project_actions
+        text-align: right
     td.project_info
       text-align: left
       h3
@@ -23,9 +26,9 @@ body.projects
         &.project_description
           margin: 2px 0
           color: #666
-        &.project_members
-          font-size: 90%
-          color: #666
+    ul.project_actions
+      font-size: 90%
+      text-align: right
   div.empty_list
     margin-top: -20px
     margin-bottom: 20px

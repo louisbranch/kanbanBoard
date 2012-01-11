@@ -14,9 +14,6 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
-    8.times do
-      status = @project.statuses.build
-    end
   end
 
   def create
@@ -31,9 +28,6 @@ class ProjectsController < ApplicationController
 
   def edit
     @project = Project.find(params[:id])
-    3.times do
-      status = @project.statuses.build
-    end
   end
 
   def update

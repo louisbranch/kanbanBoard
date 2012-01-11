@@ -1,6 +1,11 @@
-%tr
-  %td=f.text_field :name
-  %td=f.select :wip, options_for_select(1..10.to_i), :include_blank => true
-  - if params[:action] == 'edit'
-    %td=f.check_box :_destroy
+= error_messages_for(status)
+= form_for([project, status]) do |f|
+  %div
+    =f.label :name
+    =f.text_field :name
+  %div
+    =f.label :wip, 'Work in Progress Limit'
+    =f.text_field :wip
+  %div
+    =f.submit :class => 'button'
 

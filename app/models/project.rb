@@ -5,7 +5,7 @@ class Project < ActiveRecord::Base
   has_many :invitations, :dependent => :destroy
   has_many :users, :through => :memberships
 
-  accepts_nested_attributes_for :statuses, :reject_if => lambda { |s| s[:name].blank? }, :allow_destroy => true
+  after_create :create_backlog
 
   validates :name, :presence => true
   validates :description, :presence => true
@@ -16,6 +16,10 @@ class Project < ActiveRecord::Base
 
   def remove_member(user)
     memberships.where('user_id = ?', user.id).first.destroy
+  end
+
+  def create_backlog
+    statuses.create( :name => 'Backlog')
   end
 
 end
