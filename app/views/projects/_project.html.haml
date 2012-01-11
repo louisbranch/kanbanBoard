@@ -13,12 +13,16 @@
         %li
           = status.user_stories.count
   %td.project_availability
+    %ul.project_statuses_availability
+      - project.statuses.each do |status|
+        %li
+          = status.availability
   %td
     %ul
       - project.users.each do |member|
         %li= member.name
-  %td
-    %ul.project_actions
+  %td.project_actions
+    %ul
       %li= link_to 'edit project', edit_project_path(project)
       %li= link_to 'statuses', project_statuses_path(project)
       %li= link_to 'members', project_members_path(project)

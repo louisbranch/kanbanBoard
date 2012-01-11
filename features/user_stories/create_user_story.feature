@@ -6,7 +6,6 @@ Feature: Creating an User Story
 	Background:
 		Given I'm logged in
 		And I have a project
-		And a status system exists
 
 	Scenario: Adding an user story to a project
 		When I create a new user story

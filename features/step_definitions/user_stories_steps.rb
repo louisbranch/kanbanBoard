@@ -61,11 +61,11 @@ When /^I update this user story status$/ do
   click_on 'Update User story'
 end
 
-When /^I drag and drop this user story to another status section$/ do
+When /^I drag and drop this user story to another status column$/ do
   visit project_path(@user_story.project)
   user_story = find("li#user_story_#{@user_story.id} header")
-  new_section = find("section#status_#{@status2.id} ul")
-  user_story.drag_to(new_section)
+  new_column = find("td#status_#{@status2.id} ul")
+  user_story.drag_to(new_column)
 end
 
 When /^I delete this user story$/ do
@@ -84,20 +84,20 @@ When /^I drag and drop the second user story to the top of the first$/ do
   visit project_path(@user_story_1.project)
   user_story_1 = find("li#user_story_#{@user_story_1.id} header")
   user_story_2 = find("li#user_story_#{@user_story_2.id} header")
-  new_section = find("section#status_#{@status2.id}")
-  user_story_2.drag_to(new_section)
-  user_story_1.drag_to(new_section)
+  new_column = find("td#status_#{@status2.id} ul")
+  user_story_2.drag_to(new_column)
+  user_story_1.drag_to(new_column)
 end
 
 When /^I click to show the remaining user stories$/ do
-  within("section#status_#{@status.id}") do
+  within("td#status_#{@status.id}") do
     find("li.show_more_user_stories").click
   end
 end
 
 Then /^I should see this user story listed on the project backlog$/ do
   @project.user_stories.count.should == 1
-  within("section#status_#{@project.statuses.first.id}") do
+  within("td#status_#{@project.statuses.first.id}") do
     within("li#user_story_#{UserStory.first.id}") do
       page.should have_content 'Creating an User Story'
       page.should have_content 'In order to describe a new feature for a project...'
@@ -119,9 +119,9 @@ Then /^I should see this user story story sizes$/ do
   end
 end
 
-Then /^I should see this user story listed on the correct status section$/ do
+Then /^I should see this user story listed on the correct status column$/ do
   visit project_path(@project)
-  within("section#status_#{@status2.id}") do
+  within("td#status_#{@status2.id}") do
     within("li#user_story_#{@user_story.id}") do
       page.should have_content 'Creating an User Story'
       page.should have_content 'In order to describe a new feature for a project...'
@@ -134,7 +134,7 @@ Then /^I should no longer see this user story$/ do
 end
 
 Then /^I should see these user stories sorted as second and first$/ do
-  visit project_path(@user_story_1.project)
+  visit project_path(@project)
   page.body.should =~ /#{'User Story 2'}.*#{'User Story 1'}/m
 end
 

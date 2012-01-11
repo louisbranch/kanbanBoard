@@ -5,9 +5,10 @@ Feature: Sorting User Stories
 
 	Background:
 		Given I'm logged in
-	
+
 	@javascript
 	Scenario:
 		Given two user stories exist on the same project and status
 		When I drag and drop the second user story to the top of the first
 		Then I should see these user stories sorted as second and first
+

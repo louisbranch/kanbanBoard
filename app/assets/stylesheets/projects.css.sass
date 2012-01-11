@@ -17,18 +17,32 @@ body.projects
         text-align: left
       th.project_actions
         text-align: right
-    td.project_info
-      text-align: left
-      h3
-      div
-        &.project_name
-          font-size: 120%
-        &.project_description
-          margin: 2px 0
-          color: #666
-    ul.project_actions
-      font-size: 90%
-      text-align: right
+    tbody
+      tr
+        border-top: 1px solid #ccc
+        td
+          padding: 15px 0
+          &.project_info
+            text-align: left
+            padding: 15px 5px
+            h3
+            div
+              &.project_name
+                font-size: 120%
+              &.project_description
+                margin: 2px 0
+                color: #666
+          &.project_actions
+            padding: 15px 5px
+            ul li
+              font-size: 90%
+              text-align: right
+          ul.project_statuses, ul.project_user_stories, ul.project_statuses_availability
+            li
+              padding: 2px 0
+              border-bottom: 1px solid #ddd
+              &:last-child
+                border-bottom: 0
   div.empty_list
     margin-top: -20px
     margin-bottom: 20px

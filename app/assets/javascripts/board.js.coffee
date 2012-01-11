@@ -1,8 +1,7 @@
 $ dragUserStories = ->
   if $('div#board').length
-    $('section ul').sortable
-      scroll: false,
-      connectWith: 'section ul',
+    $('td ul').sortable
+      connectWith: 'td ul',
       placeholder: 'user_stories placeholder',
       handle: 'header',
       opacity: 0.9,
@@ -16,14 +15,14 @@ $ dragUserStories = ->
 $ adjustBoardHeight = ->
   if $('div#board').length
     height = $(window).height() - 160
-    $('div#board section ul').css('min-height', height)
+    $('div#board td ul').css('min-height', height)
 
 $ limitUserStoryPerStatus = ->
   if $('div#board').length
-    for section in $('section ul')
-      if $(section).children('li.user_stories').length > 4
-        hideUserStories(section)
-        $(section).children('li.show_more_user_stories').show()
+    for column in $('td ul')
+      if $(column).children('li.user_stories').length > 4
+        hideUserStories(column)
+        $(column).children('li.show_more_user_stories').show()
 
 hideUserStories = (e) ->
   last_user_story = $(e).children('li.user_stories').length

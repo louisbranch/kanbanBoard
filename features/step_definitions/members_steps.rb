@@ -20,7 +20,7 @@ end
 When /^I remove this member from this project$/ do
   visit projects_path
   within("#project_#{@project.id}") do
-    click_on 'manage'
+    click_on 'members'
   end
   within("#member_#{@user.id}") do
     click_on 'remove'

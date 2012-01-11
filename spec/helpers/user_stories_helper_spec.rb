@@ -5,7 +5,7 @@ describe UserStoriesHelper do
   it 'returns the css for its status section' do
     @status = FactoryGirl.create(:status)
     @user_story = FactoryGirl.create(:user_story, :status => @status)
-    helper.status_list.should == "section#status_#{@status.id} ul"
+    helper.status_list.should == "td#status_#{@status.id} ul"
   end
 
   it 'returns the css for its list item' do

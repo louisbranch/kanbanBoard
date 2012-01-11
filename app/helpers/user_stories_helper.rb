@@ -11,7 +11,7 @@ module UserStoriesHelper
 
   # For AJAX CRUD
   def status_list
-    "section#status_#{@user_story.status.id} ul"
+    "td#status_#{@user_story.status.id} ul"
   end
 
   # For AJAX CRUD

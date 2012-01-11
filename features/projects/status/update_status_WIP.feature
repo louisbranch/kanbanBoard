@@ -6,7 +6,6 @@ Feature: Updating a Project
 	Background:
 		Given I'm logged in
 		And I have a project
-		And a status system exists
 
 	@wip
 	Scenario: Setting a WIP limit for a status

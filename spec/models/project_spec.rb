@@ -20,6 +20,12 @@ describe Project do
 
   end
 
+  it 'creates a Backlog status automatically' do
+    @project = FactoryGirl.create(:project)
+    @project.statuses.count == 1
+    @project.statuses.first.name == 'Backlog'
+  end
+
   context 'members' do
 
     before(:each) do

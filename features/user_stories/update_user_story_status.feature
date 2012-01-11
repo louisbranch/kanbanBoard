@@ -9,10 +9,10 @@ Feature: Update User Stories Statuses
 
 	Scenario: Updating user story status through form
 		When I update this user story status
-		Then I should see this user story listed on the correct status section
+		Then I should see this user story listed on the correct status column
 
 	@javascript
 	Scenario: Updating user story status through drag and drop
-		When I drag and drop this user story to another status section
-		Then I should see this user story listed on the correct status section
+		When I drag and drop this user story to another status column
+		Then I should see this user story listed on the correct status column
 

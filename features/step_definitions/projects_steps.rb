@@ -39,7 +39,7 @@ end
 When /^I update this project information$/ do
   visit projects_path
   within("tr#project_#{@project.id}") do
-    click_on 'Edit'
+    click_on 'edit project'
   end
   fill_in 'Name', :with => 'kanbanBoard'
   fill_in 'Description', :with => 'A even simpler way to track User Stories'
@@ -49,7 +49,7 @@ end
 When /^I delete this project$/ do
   visit projects_path
   within("tr#project_#{@project.id}") do
-    click_on 'Delete'
+    click_on 'delete project'
   end
 end
 
@@ -73,6 +73,12 @@ Then /^I should see this project listed$/ do
   end
 end
 
+Then /^it should have a Backlog status$/ do
+  Project.first.statuses.count == 1
+  visit project_path(Project.first)
+  page.should have_content 'Backlog'
+end
+
 Then /^I should see this project information updated$/ do
   page.should have_content 'Project Updated!'
   within("tr#project_#{@project.id}") do
@@ -89,7 +95,7 @@ end
 Then /^I should see this project's user stories count by status$/ do
   visit projects_path
   within("tr#project_#{@project.id}") do
-    within("td.user_stories") do
+    within("ul.project_user_stories") do
       page.should have_content '2'
     end
   end

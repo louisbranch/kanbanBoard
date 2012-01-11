@@ -9,6 +9,7 @@ Feature: Creating a Project
 	Scenario: Creating a new project
 		When I create a new project
 		Then I should see this project listed
+		And it should have a Backlog status
 
 	Scenario: Empty Project List
 		Given I don't have any projects
