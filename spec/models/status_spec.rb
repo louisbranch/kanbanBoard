@@ -24,11 +24,10 @@ describe Status do
       @status.availability.should == 0
     end
 
-    it 'is unlimited' do
+    it 'is not set' do
       @status.wip = nil
       @status.availability.should == '-'
     end
-
   end
 end
 

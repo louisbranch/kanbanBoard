@@ -7,7 +7,7 @@
       %th Manage
   %tbody
     - @statuses.each do |status|
-      %tr
+      %tr{ :id => ['status', status.id] }
         %td= status.name
         %td= status.wip
         %td

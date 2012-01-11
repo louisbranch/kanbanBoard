@@ -53,13 +53,6 @@ When /^I delete this project$/ do
   end
 end
 
-When /^I set the WIP limit for a status$/ do
-  visit edit_project_path(@project)
-  within("tr#status_#{Status.first.id}") do
-    select '2', :from => 'WIP'
-  end
-end
-
 Then /^I should see an empty project list$/ do
   page.should have_content 'No projects yet'
 end

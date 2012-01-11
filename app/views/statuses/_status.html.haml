@@ -1,5 +1,8 @@
 %td{ :id => ['status', status.id] }
-  %h3= status.name
+  %header
+    %h3= status.name
+    - if status.wip
+      %span.wip= "WIP: #{status.wip}"
   %ul{ 'data-update-url' => update_status_project_user_stories_path(project, :status => status.id)}
     =render :partial => 'user_stories/user_story', :collection => status.user_stories, :locals => { :project => project }
     %li.show_more_user_stories Show more User Stories
