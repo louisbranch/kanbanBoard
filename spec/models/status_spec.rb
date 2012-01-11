@@ -2,6 +2,18 @@ require 'spec_helper'
 
 describe Status do
 
+  context 'validates' do
+
+    before(:each) do
+      @status = FactoryGirl.build(:status)
+    end
+
+    it 'its name presence' do
+      @status.name = nil
+      @status.should have(1).error_on(:name)
+    end
+  end
+
   context 'availability' do
 
     before(:each) do

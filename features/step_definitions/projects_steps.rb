@@ -81,7 +81,7 @@ Then /^I should see this project information updated$/ do
 end
 
 Then /^I should no longer see this project$/ do
-  Project.all.count.should == 0
+  Project.exists?(@project).should == false
   page.should have_content 'Project Deleted!'
 end
 

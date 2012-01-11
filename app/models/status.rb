@@ -1,6 +1,6 @@
 class Status < ActiveRecord::Base
   belongs_to :project
-  has_many :user_stories, :order => "position"
+  has_many :user_stories, :order => "position", :dependent => :destroy
 
   validates :name, :presence => true
 
