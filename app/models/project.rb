@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-  has_many :statuses, :dependent => :destroy
+  has_many :statuses, :dependent => :destroy, :order => "statuses.index ASC"
   has_many :user_stories, :dependent => :destroy
   has_many :memberships, :dependent => :destroy
   has_many :invitations, :dependent => :destroy

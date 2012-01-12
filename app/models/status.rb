@@ -7,6 +7,8 @@ class Status < ActiveRecord::Base
   def availability
     if wip
       wip - user_stories.count
+    else
+      "-"
     end
   end
 
