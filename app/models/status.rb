@@ -4,6 +4,8 @@ class Status < ActiveRecord::Base
 
   validates :name, :presence => true
 
+  default_scope :order => 'created_at ASC'
+
   def availability
     if wip
       wip - user_stories.count
@@ -13,4 +15,3 @@ class Status < ActiveRecord::Base
   end
 
 end
-
