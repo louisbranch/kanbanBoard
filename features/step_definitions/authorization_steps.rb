@@ -42,4 +42,3 @@ end
 Then /^I should not access the site and its projects$/ do
   page.should have_content 'Login'
 end
-

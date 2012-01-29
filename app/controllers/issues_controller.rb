@@ -1,7 +1,6 @@
 class IssuesController < ApplicationController
   before_filter :require_login
-  #load_and_authorize_resource :project
-  #load_and_authorize_resource :issue, :through => :project
+  load_and_authorize_resource
   before_filter :load_resources
 
   def new

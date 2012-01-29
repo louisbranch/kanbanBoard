@@ -5,30 +5,19 @@ class Ability
     user ||= User.new # guest user
 
     can :create, Project
-    can :read, Project do |project|
-      project.member?(user)
-    end
-    can :update, Project do |project|
-      project.member?(user)
-    end
-    can :destroy, Project do |project|
+    can [:read, :update, :destroy], Project do |project|
       project.member?(user)
     end
 
     can :create, UserStory
-    can :read, UserStory do |user_story|
+    can [:read, :update, :destroy, :update_status], UserStory do |user_story|
       user_story.project.member?(user)
     end
-    can :update, UserStory do |user_story|
-      user_story.project.member?(user)
-    end
-    can :destroy, UserStory do |user_story|
-      user_story.project.member?(user)
-    end
-    can :update_status, UserStory do |user_story|
-      user_story.project.member?(user)
+
+    can :create, Issue
+    can [:read, :update, :destroy], Issue do |issue|
+      issue.user_story.project.member?(user)
     end
 
   end
 end
-
