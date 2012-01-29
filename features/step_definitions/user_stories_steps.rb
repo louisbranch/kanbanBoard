@@ -31,6 +31,10 @@ Given /^I can only see the first (\d+) user stories$/ do |num|
   find("li#user_story_#{@project.user_stories.last.id}").visible?.should == false
 end
 
+Given /^this user story has been blocked$/ do
+  @issue = FactoryGirl.create(:issue, :user_story => @user_story)
+end
+
 When /^I create a new user story$/ do
   visit project_path(@project)
   click_on 'New User Story'
@@ -95,6 +99,25 @@ When /^I click to show the remaining user stories$/ do
   end
 end
 
+When /^I mark this user story as blocked$/ do
+  visit project_path(@user_story.project)
+  click_on 'Block'
+  fill_in 'Description', :with => 'Something is preventing me from going on'
+  click_on 'Create Issue'
+end
+
+When /^I edit this issue$/ do
+  visit project_path(@user_story.project)
+  click_on 'edit issue'
+  fill_in 'Description', :with => 'Something went terrible wrong'
+  click_on 'Update Issue'
+end
+
+When /^I remove this issue$/ do
+  visit project_path(@user_story.project)
+  click_on 'remove issue'
+end
+
 Then /^I should see this user story listed on the project backlog$/ do
   @project.user_stories.count.should == 1
   within("td#status_#{@project.statuses.first.id}") do
@@ -155,3 +178,14 @@ Then /^I should see this user story story sizes as '\?'$/ do
   end
 end
 
+Then /^I should see this user story with an issue listed$/ do
+  page.should have_content 'Something is preventing me from going on'
+end
+
+Then /^I should see this user story with this issue updated$/ do
+  page.should have_content 'Something went terrible wrong'
+end
+
+Then /^I should no longer see this user story with this issue listed$/ do
+  page.should_not have_content @issue.description
+end

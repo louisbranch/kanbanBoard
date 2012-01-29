@@ -1,2 +1,2 @@
-$('<%= "#user_story_#{@user_story.id}" %>').fadeOut 'fast', ->
+$('<%= "#issue_#{@issue.id}" %>').fadeOut 'fast', ->
   $(this).remove()

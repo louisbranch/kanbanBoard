@@ -1,0 +1,7 @@
+= error_messages_for(issue)
+=form_for([project,user_story,issue]) do |f|
+  %div
+    =f.label :description
+    =f.text_area :description
+  %div
+    =f.submit :class => 'button'

@@ -15,4 +15,3 @@ Feature: Update User Stories Statuses
 	Scenario: Updating user story status through drag and drop
 		When I drag and drop this user story to another status column
 		Then I should see this user story listed on the correct status column
-

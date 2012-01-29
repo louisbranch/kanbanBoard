@@ -2,6 +2,7 @@ class UserStory < ActiveRecord::Base
   belongs_to :project
   belongs_to :status
   belongs_to :story_size
+  has_many :issues
   acts_as_list :scope => :status
 
   validates :name, :presence => true
@@ -22,4 +23,3 @@ class UserStory < ActiveRecord::Base
   end
 
 end
-

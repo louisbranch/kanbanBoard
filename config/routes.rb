@@ -7,6 +7,7 @@ KanbanBoard::Application.routes.draw do
     resources :members, :only => [:index, :new, :create, :destroy]
     resources :user_stories, :except => [:index, :show] do
       post 'update_status', :on => :collection
+      resources :issues, :except => [:index, :show]
     end
   end
   resources :users, :only => [:create]
@@ -20,4 +21,3 @@ KanbanBoard::Application.routes.draw do
 
   root :to => 'home#show'
 end
-

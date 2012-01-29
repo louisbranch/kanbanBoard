@@ -11,61 +11,70 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120102171833) do
+ActiveRecord::Schema.define(:version => 20120129200452) do
 
   create_table "invitations", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.string   "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "user_id"
+    t.integer   "project_id"
+    t.string    "email"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   add_index "invitations", ["project_id"], :name => "index_invitations_on_project_id"
   add_index "invitations", ["user_id"], :name => "index_invitations_on_user_id"
 
-  create_table "memberships", :force => true do |t|
-    t.integer  "project_id"
-    t.integer  "user_id"
+  create_table "issues", :force => true do |t|
+    t.text     "description"
+    t.integer  "user_story_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  add_index "issues", ["user_story_id"], :name => "index_issues_on_user_story_id"
+
+  create_table "memberships", :force => true do |t|
+    t.integer   "project_id"
+    t.integer   "user_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   add_index "memberships", ["project_id"], :name => "index_memberships_on_project_id"
   add_index "memberships", ["user_id"], :name => "index_memberships_on_user_id"
 
   create_table "projects", :force => true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "name"
+    t.text      "description"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "statuses", :force => true do |t|
-    t.string   "name"
-    t.integer  "wip"
-    t.integer  "project_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "name"
+    t.integer   "wip"
+    t.integer   "project_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   add_index "statuses", ["project_id"], :name => "index_statuses_on_project_id"
 
   create_table "story_sizes", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "name"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "user_stories", :force => true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.integer  "position"
-    t.integer  "project_id"
-    t.integer  "status_id"
-    t.integer  "story_size_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "name"
+    t.text      "description"
+    t.integer   "position"
+    t.integer   "project_id"
+    t.integer   "status_id"
+    t.integer   "story_size_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   add_index "user_stories", ["project_id"], :name => "index_user_stories_on_project_id"
@@ -73,17 +82,17 @@ ActiveRecord::Schema.define(:version => 20120102171833) do
   add_index "user_stories", ["story_size_id"], :name => "index_user_stories_on_story_size_id"
 
   create_table "users", :force => true do |t|
-    t.string   "name"
-    t.string   "email",                           :null => false
-    t.string   "crypted_password"
-    t.string   "salt"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "remember_me_token"
-    t.datetime "remember_me_token_expires_at"
-    t.string   "reset_password_token"
-    t.datetime "reset_password_token_expires_at"
-    t.datetime "reset_password_email_sent_at"
+    t.string    "name"
+    t.string    "email",                           :null => false
+    t.string    "crypted_password"
+    t.string    "salt"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "remember_me_token"
+    t.timestamp "remember_me_token_expires_at"
+    t.string    "reset_password_token"
+    t.timestamp "reset_password_token_expires_at"
+    t.timestamp "reset_password_email_sent_at"
   end
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"
