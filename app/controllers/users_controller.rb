@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       auto_login(@user)
+      remember_me!
       redirect_to projects_path, :notice => "Signed up!"
     else
       render :new
@@ -15,4 +16,3 @@ class UsersController < ApplicationController
   end
 
 end
-
