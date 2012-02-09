@@ -50,6 +50,22 @@ When /^I reset my password$/ do
   click_on 'Reset'
 end
 
+When /^I update my account information$/ do
+  visit account_path
+  click_on 'Edit'
+  fill_in 'Name', :with => 'Gustavo Fernandes'
+  fill_in 'Email', :with => 'branco@mobplug.com'
+  click_on 'Update'
+end
+
+When /^I change my password$/ do
+  visit account_path
+  click_on 'Change Password'
+  fill_in 'Password', :with => 'secret2'
+  fill_in 'Password confirmation', :with => 'secret2'
+  click_on 'Change'
+end
+
 Then /^I should be signed up$/ do
   page.should have_content 'Signed up!'
 end
@@ -68,4 +84,8 @@ end
 
 Then /^I should have a new password$/ do
   page.should have_content 'Password was successfully updated.'
+end
+
+Then /^my user account should be updated$/ do
+  page.should have_content 'Your account was updated!'
 end

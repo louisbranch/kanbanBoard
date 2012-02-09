@@ -1,0 +1,10 @@
+%h2 Edit Account
+= error_messages_for(@user)
+= form_for @user, :url => account_path do |f|
+  %div
+    =f.label :name
+    =f.text_field :name
+  %div
+    =f.label :email
+    =f.text_field :email
+  %div=f.submit 'Update Account', :class => 'button'

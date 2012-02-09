@@ -9,6 +9,8 @@
     %header#main
       %h1= link_to 'kanbanBoard', root_path
       - if logged_in?
-        %span#logout=link_to 'Log out', logout_path
+        %div
+          %span=link_to 'My Account', account_path
+          %span=link_to 'Log out', logout_path
     = render :partial => 'shared/flash_messages'
     = yield

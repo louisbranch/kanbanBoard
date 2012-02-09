@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+  before_filter :require_login, :only => [:show, :edit, :update]
+
+  def show
+    @user = current_user
+  end
 
   def new
     @user = User.new
@@ -12,6 +17,19 @@ class UsersController < ApplicationController
       redirect_to projects_path, :notice => "Signed up!"
     else
       render :new
+    end
+  end
+
+  def edit
+    @user = current_user
+  end
+
+  def update
+    @user = current_user
+    if @user.update_attributes(params[:user])
+      redirect_to projects_path, :notice => 'Your account was updated!'
+    else
+      render :Edit
     end
   end
 

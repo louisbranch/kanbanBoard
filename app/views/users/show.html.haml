@@ -1,0 +1,10 @@
+%h2 My Account
+%dl
+  %dt
+    %strong Name
+  %dd= @user.name
+  %dt
+    %strong Email
+  %dd= @user.email
+=link_to 'Edit', edit_account_path, :class => 'button'
+=link_to 'Change Password', edit_password_path, :class => 'button'
