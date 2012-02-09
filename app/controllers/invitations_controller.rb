@@ -6,7 +6,7 @@ class InvitationsController < ApplicationController
     unless project.invitations.for?(receiver)
       invitation = Invitation.new( :user => current_user, :project => project, :email => receiver)
       if invitation.save
-        UserMailer.invite(current_user.id, receiver, project.id).deliver
+        UserMailer.invite(current_user, receiver, project).deliver
         flash[:notice] = "An invitation has been sent to #{receiver}"
       end
     else
@@ -31,4 +31,3 @@ class InvitationsController < ApplicationController
   end
 
 end
-
