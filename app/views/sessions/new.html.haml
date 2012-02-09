@@ -9,5 +9,7 @@
   %div
     = submit_tag 'Login', :class => 'button'
 %div
+  =link_to 'Forgot password?', new_reset_password_path
+%div
   Don't have an account?
   = link_to 'Sign Up', signup_path, :class => 'button'

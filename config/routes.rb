@@ -10,8 +10,10 @@ KanbanBoard::Application.routes.draw do
       resources :issues, :except => [:index, :show]
     end
   end
+
   resources :users, :only => [:create]
   match "signup" => "users#new"
+  resources :reset_passwords, :only => [:new, :create, :edit, :update]
 
   resources :sessions, :only => [:create]
   match "login" => "sessions#new"

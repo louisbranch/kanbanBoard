@@ -1,0 +1,7 @@
+%h2 Reset Password
+= form_tag reset_passwords_path, :method => :post do
+  %div
+    = label_tag :email
+    = text_field_tag :email
+  %div
+    = submit_tag 'Reset my password!', :class => 'button'
