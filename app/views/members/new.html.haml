@@ -4,7 +4,7 @@
   %div
     = label_tag :search, 'Email'
     = text_field_tag :search, params[:search], :autofocus => true
-    = submit_tag "Search", :name => nil, :class => 'button'
+    = submit_tag "Search", :name => nil, :class => 'btn'
 - if @members
   - if @members.empty?
     = "#{@search} was not found."
@@ -17,4 +17,3 @@
         %th Action
       %tbody
         =render :partial => 'member', :collection => @members, :locals => { :project => @project }
-

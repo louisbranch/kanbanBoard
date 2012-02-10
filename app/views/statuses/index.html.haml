@@ -1,5 +1,5 @@
-%h2 Statuses
-%table
+%h1 Statuses
+%table.table.table-bordered.table-striped.table-condensed
   %thead
     %tr
       %th Name
@@ -11,7 +11,12 @@
         %td= status.name
         %td= status.wip
         %td
-          = link_to 'Edit', edit_project_status_path(@project, status)
-          = link_to 'Delete', project_status_path(@project, status), :method => :delete, :confirm => 'Are you sure?'
-= link_to 'Add Status', new_project_status_path(@project), :class => 'button'
-
+          = link_to edit_project_status_path(@project, status), :class => 'btn' do
+            %i.icon-pencil
+            Edit
+          = link_to project_status_path(@project, status), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-danger' do
+            %i.icon-trash.icon-white
+            Delete
+= link_to new_project_status_path(@project), :class => 'btn btn-success' do
+  %i.icon-plus.icon-white
+  Add Status

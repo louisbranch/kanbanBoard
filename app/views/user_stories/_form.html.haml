@@ -5,7 +5,7 @@
     =f.text_field :name, :autofocus => true
   %div
     =f.label :description
-    =f.text_area :description
+    =f.text_area :description, :rows => '6'
   %div
     =f.label :story_size_id, 'Story Size'
     =f.collection_select(:story_size_id, story_sizes, :id, :name, :include_blank => '?')
@@ -13,5 +13,4 @@
     =f.label :status_id
     =f.collection_select(:status_id, statuses, :id, :name)
   %div
-    =f.submit :class => 'button'
-
+    =f.submit :class => 'btn'

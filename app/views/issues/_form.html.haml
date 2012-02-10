@@ -2,6 +2,6 @@
 =form_for([project,user_story,issue]) do |f|
   %div
     =f.label :description
-    =f.text_area :description
+    =f.text_area :description, :rows => '6'
   %div
-    =f.submit :class => 'button'
+    =f.submit :class => 'btn'

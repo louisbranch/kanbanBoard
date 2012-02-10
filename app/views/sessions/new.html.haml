@@ -7,9 +7,9 @@
     = label_tag :password, 'Password'
     = password_field_tag :password
   %div
-    = submit_tag 'Login', :class => 'button'
+    = submit_tag 'Login', :class => 'btn'
 %div
   =link_to 'Forgot password?', new_reset_password_path
 %div
   Don't have an account?
-  = link_to 'Sign Up', signup_path, :class => 'button'
+  = link_to 'Sign Up', signup_path

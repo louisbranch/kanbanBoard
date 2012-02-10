@@ -8,6 +8,7 @@ group :assets do
 end
 
 gem 'sass-rails',   '~> 3.2.3'
+gem 'bootstrap-sass', :git => 'git://github.com/thomas-mcdonald/bootstrap-sass.git', :branch => '2.0'
 gem 'jquery-rails'
 gem 'haml'
 gem 'haml-rails'

@@ -1,19 +1,20 @@
 - if @invitations.any?
-  %h2 Invitations
+  %h1 Invitations
   %ul#invitation_list
     = render @invitations
-%h2 Projects
-%table#projects_list
+%h1 Projects
+%table.table.table-bordered.table-striped
   %thead
     %th.project_name Name
     %th Statuses
     %th User Stories
     %th Availability
     %th Members
-    %th
+    %th Manage
   %tbody
     = render @projects
 - if @projects.empty?
   %div.empty_list No projects yet
-=link_to 'New Project', new_project_path, :class => 'button'
-
+= link_to new_project_path, :class => 'btn btn-success' do
+  %i.icon-plus.icon-white
+  New Project

@@ -1,7 +1,10 @@
-%h2#project_title= @project.name
-=link_to 'New User Story', new_project_user_story_path(@project), :remote => true, :class => 'button', :id => 'new_story'
+.rpw
+  %h2.pull-left= @project.name
+  .pull-right
+    = link_to new_project_user_story_path(@project), :remote => true, :class => 'btn btn-success', :id => 'new_story' do
+      %i.icon-plus.icon-white
+      New User Story
 %div#board
   %table
     %tbody
       =render @statuses, :project => @project
-

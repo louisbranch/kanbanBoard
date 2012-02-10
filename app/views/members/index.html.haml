@@ -1,11 +1,12 @@
-%h2= link_to @project.name, project_path(@project)
-%h3 Members
-%table
+%h1= link_to @project.name, project_path(@project)
+%h2 Members
+%table.table.table-bordered.table-striped.table-condensed
   %thead
     %th Name
     %th Email
-    %th Actions
+    %th Manage
   %tbody
     =render :partial => 'member', :collection => @members, :locals => { :project => @project }
-= link_to 'Add Member', new_project_member_path(@project), :class => 'button'
-
+= link_to new_project_member_path(@project), :class => 'btn btn-success' do
+  %i.icon-plus.icon-white
+  Add Member
