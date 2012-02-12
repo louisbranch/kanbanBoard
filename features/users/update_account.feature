@@ -3,12 +3,17 @@ Feature: Update User Account
   As a forgetful chef
   I want to update my user account
 
-  Scenario: Updating my account
+  Background:
     Given I'm logged in
+
+  Scenario: Updating my account
     When I update my account information
     Then my user account should be updated
 
   Scenario: Changing my password
-    Given I'm logged in
     When I change my password
     Then I should have a new password
+
+  Scenario: Deleting my account
+    When I delete my account
+    Then I should not be an user anymore

@@ -66,6 +66,11 @@ When /^I change my password$/ do
   click_on 'Change'
 end
 
+When /^I delete my account$/ do
+  visit account_path
+  click_on 'Delete Account'
+end
+
 Then /^I should be signed up$/ do
   page.should have_content 'Signed up!'
 end
@@ -88,4 +93,8 @@ end
 
 Then /^my user account should be updated$/ do
   page.should have_content 'Your account was updated!'
+end
+
+Then /^I should not be an user anymore$/ do
+  page.should have_content 'Your account was deleted!'
 end

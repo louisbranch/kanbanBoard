@@ -13,7 +13,7 @@ KanbanBoard::Application.routes.draw do
 
   resources :users, :only => [:create]
   match "signup" => "users#new"
-  resource :account, :only => [:show, :edit, :update], :controller => 'users'
+  resource :account, :only => [:show, :edit, :update, :destroy], :controller => 'users'
   resource :password, :only => [:edit, :update], :controller => 'user_password'
   resources :reset_passwords, :only => [:new, :create, :edit, :update]
 

@@ -33,4 +33,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user = current_user
+    if @user.destroy
+      redirect_to root_path, :notice => 'Your account was deleted!'
+    end
+  end
+
 end
