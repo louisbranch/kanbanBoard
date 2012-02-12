@@ -1,0 +1,6 @@
+%div{ :id => ['issue', issue.id]}
+  = issue.description
+  %div
+    = "#{distance_of_time_in_words(Time.now, issue.created_at)} ago"
+    = link_to 'remove issue', project_user_story_issue_path(project, user_story, issue), :remote => true, :method => :delete, :confirm => 'Are you sure?'
+    = link_to 'edit issue', edit_project_user_story_issue_path(project, user_story, issue), :remote => true

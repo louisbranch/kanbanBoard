@@ -6,13 +6,7 @@
   -if user_story.issues.any?
     %div.issues
       %h5 Blocking Issues
-      - user_story.issues.each do |issue|
-        %div{ :id => ['issue', issue.id]}
-          = issue.description
-          %div
-            = "#{distance_of_time_in_words(Time.now, issue.created_at)} ago"
-            = link_to 'remove issue', project_user_story_issue_path(project, user_story, issue), :remote => true, :method => :delete, :confirm => 'Are you sure?'
-            = link_to 'edit issue', edit_project_user_story_issue_path(project, user_story, issue), :remote => true
+      =render user_story.issues, :project => project, :user_story => user_story
   %footer
     = link_to 'Block', new_project_user_story_issue_path(project, user_story), :remote => true
     = link_to 'Delete', project_user_story_path(project, user_story), :remote => true, :method => :delete, :confirm => 'Are you sure?'

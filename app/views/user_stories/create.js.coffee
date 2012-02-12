@@ -7,4 +7,3 @@
   $("<%= status_list %>").append(user_story)
   $(user_story).fadeIn('fast')
 <% end %>
-
