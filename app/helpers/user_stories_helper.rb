@@ -2,7 +2,7 @@ module UserStoriesHelper
 
   def highlight_user_story(text)
     highlighter = '<mark>\1</mark>'
-    matchers = [/(In order to)/, /(As a)/, /(I want to)/]
+    matchers = [/(In order to)/, /(As an?)/, /(I want to)/]
     matchers.each do |matcher|
       text.gsub!(matcher, highlighter)
     end
@@ -20,4 +20,3 @@ module UserStoriesHelper
   end
 
 end
-
